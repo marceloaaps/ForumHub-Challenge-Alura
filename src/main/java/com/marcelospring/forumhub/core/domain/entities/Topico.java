@@ -2,12 +2,16 @@ package com.marcelospring.forumhub.core.domain.entities;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "Topico")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Topico {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

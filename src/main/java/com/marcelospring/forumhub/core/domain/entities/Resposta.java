@@ -2,6 +2,8 @@ package com.marcelospring.forumhub.core.domain.entities;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.print.attribute.DateTimeSyntax;
 import java.time.Instant;
@@ -10,6 +12,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Resposta")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Resposta {
 
     @Id
