@@ -53,7 +53,6 @@ public class Topico {
         this.titulo = titulo;
     }
 
-
     // Por algum MISTERIO DIVINO o lombok não está pegando esse setter
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
