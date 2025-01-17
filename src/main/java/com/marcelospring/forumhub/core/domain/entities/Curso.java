@@ -1,6 +1,7 @@
 package com.marcelospring.forumhub.core.domain.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table (name = "Curso")
