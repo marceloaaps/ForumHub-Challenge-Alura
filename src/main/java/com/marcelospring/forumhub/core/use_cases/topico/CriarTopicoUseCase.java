@@ -7,6 +7,8 @@ import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class CriarTopicoUseCase {
 
@@ -18,7 +20,11 @@ public class CriarTopicoUseCase {
 
     public Topico criarTopico(TopicoDto topicoDto) {
 
+
         Topico topico = TopicoMapper.INSTANCE.toEntity(topicoDto);
+        var data = LocalDateTime.now();
+        topico.setDataCriacao(data);
+
         repository.save(topico);
 
         return topico;

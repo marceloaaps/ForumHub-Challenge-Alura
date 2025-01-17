@@ -27,6 +27,8 @@ public class Topico {
 
     private String titulo;
     private String mensagem;
+    @Setter
+    @Getter
     private LocalDateTime dataCriacao;
     private boolean status;
 
@@ -49,5 +51,11 @@ public class Topico {
         this.resposta = resposta;
         this.status = status;
         this.titulo = titulo;
+    }
+
+
+    // Por algum MISTERIO DIVINO o lombok não está pegando esse setter
+    public void setDataCriacao(LocalDateTime dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 }
