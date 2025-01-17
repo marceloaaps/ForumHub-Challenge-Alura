@@ -1,9 +1,12 @@
 package com.marcelospring.forumhub.presentation.controllers;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
+import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
+import com.marcelospring.forumhub.core.use_cases.curso.ConverteCursoUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.CriarTopicoUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.RetornarTopicoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.RetornarTopicoUseCase;
+import com.marcelospring.forumhub.core.use_cases.usuario.ConverteUsuarioUseCase;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -18,14 +21,22 @@ public class TopicoController {
     private final CriarTopicoUseCase criarTopicoUseCase;
     private final RetornarTopicoUseCase retornarTopicoUseCase;
     private final RetornarTopicoByIdUseCase retornarTopicoByIdUseCase;
+    private final ConverteUsuarioUseCase converteUsuarioUseCase;
+    private final ConverteCursoUseCase converteCursoUseCase;
+    private final TopicoRepository topicoRepository;
 
 
     public TopicoController(CriarTopicoUseCase criarTopicoUseCase,
                             RetornarTopicoUseCase retornarTopicoUseCase,
-                            RetornarTopicoByIdUseCase retornarTopicoByIdUseCase) {
+                            RetornarTopicoByIdUseCase retornarTopicoByIdUseCase,
+                            ConverteUsuarioUseCase converteUsuarioUseCase, ConverteCursoUseCase converteCursoUseCase, TopicoRepository topicoRepository) {
+
         this.criarTopicoUseCase = criarTopicoUseCase;
         this.retornarTopicoUseCase = retornarTopicoUseCase;
         this.retornarTopicoByIdUseCase = retornarTopicoByIdUseCase;
+        this.converteUsuarioUseCase = converteUsuarioUseCase;
+        this.converteCursoUseCase = converteCursoUseCase;
+        this.topicoRepository = topicoRepository;
     }
 
     @PostMapping
@@ -42,8 +53,35 @@ public class TopicoController {
     }
 
     @GetMapping("/{id}")
-    public Topico getTopico(@PathVariable("id") Long id) {
-       return retornarTopicoByIdUseCase.retornarTopicoById(id);
+    public TopicoDto getTopico(@PathVariable("id") Long id) {
+
+        Topico topico = retornarTopicoByIdUseCase.retornarTopicoById(id);
+
+        var topicoDto = converteUsuarioUseCase.converteUsuario(topico.getAutor());
+        var cursoDto = converteCursoUseCase.converteCurso(topico.getCurso());
+
+        return new TopicoDto(topico, topicoDto, cursoDto);
     }
+
+    @PutMapping("/{id}/update")
+    public ResponseEntity<Topico> atualizarTopico(
+            @PathVariable("id") Long id,
+            @RequestBody @Valid TopicoDto topicoDto) {
+
+        var topicoAntigo = retornarTopicoByIdUseCase.retornarTopicoById(id);
+
+        if (topicoAntigo == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        topicoAntigo.setTitulo(topicoDto.titulo());
+        topicoAntigo.setMensagem(topicoDto.mensagem());
+        topicoAntigo.setStatus(topicoDto.status());
+
+        topicoRepository.save(topicoAntigo);
+
+        return ResponseEntity.ok(topicoAntigo);
+    }
+
 
 }

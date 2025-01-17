@@ -1,9 +1,7 @@
 package com.marcelospring.forumhub.infra.adapters.mappers;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
-import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
-import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -14,5 +12,6 @@ public interface TopicoMapper {
 
     Topico toEntity(TopicoDto topicoDto);
 
+    TopicoDto toDto(Topico topico);
 
 }
