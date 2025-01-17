@@ -1,11 +1,14 @@
 package com.marcelospring.forumhub.core.domain.entities;
 
 
+import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,6 +17,8 @@ import java.util.List;
 @Table(name = "Topico")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Topico {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -36,4 +41,13 @@ public class Topico {
     @OneToMany(mappedBy = "topico")
     private List<Resposta> resposta;
 
+    public Topico(Curso curso, Usuario autor, LocalDateTime dataCriacao, String mensagem, List<Resposta> resposta, boolean status, String titulo) {
+        this.curso = curso;
+        this.autor = autor;
+        this.dataCriacao = dataCriacao;
+        this.mensagem = mensagem;
+        this.resposta = resposta;
+        this.status = status;
+        this.titulo = titulo;
+    }
 }
