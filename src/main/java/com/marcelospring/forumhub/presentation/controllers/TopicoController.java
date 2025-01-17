@@ -30,6 +30,7 @@ public class TopicoController {
 
         criarTopicoUseCase.criarTopico(topicoDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+
     }
 
     @GetMapping
