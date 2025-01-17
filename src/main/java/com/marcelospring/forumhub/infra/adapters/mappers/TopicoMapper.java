@@ -14,6 +14,5 @@ public interface TopicoMapper {
 
     Topico toEntity(TopicoDto topicoDto);
 
-    Usuario toEntity(UsuarioDto usuarioDto);
 
 }
