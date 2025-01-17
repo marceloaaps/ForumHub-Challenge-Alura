@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RetornarTopicoUseCase {
 
-    private TopicoRepository repository;
+    private final TopicoRepository repository;
     public RetornarTopicoUseCase(TopicoRepository repository) {
         this.repository = repository;
     }
