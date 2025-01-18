@@ -14,11 +14,7 @@ public class DeletarTopicoByIdUseCase {
     }
 
     public ResponseEntity<Void> deletar(Long id) {
-
         topicoRepository.deleteById(id);
-
-        return ResponseEntity.ok().build();
-
-
+        return ResponseEntity.noContent().build();
     }
 }
