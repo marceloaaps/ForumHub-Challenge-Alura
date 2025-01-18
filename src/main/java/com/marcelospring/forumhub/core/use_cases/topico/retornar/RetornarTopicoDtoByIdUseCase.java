@@ -33,7 +33,6 @@ public class RetornarTopicoDtoByIdUseCase {
         var curso = converteCursoUseCase.converteCurso(topico.getCurso());
 
         return new TopicoDto(
-                topico.getId(),
                 topico.getTitulo(),
                 topico.getMensagem(),
                 topico.getStatus(),

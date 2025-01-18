@@ -1,7 +1,9 @@
 package com.marcelospring.forumhub.config;
 
+import com.marcelospring.forumhub.core.domain.entities.Curso;
 import com.marcelospring.forumhub.core.domain.entities.Perfil;
 import com.marcelospring.forumhub.core.domain.entities.Usuario;
+import com.marcelospring.forumhub.core.domain.repositories.CursoRepository;
 import com.marcelospring.forumhub.core.domain.repositories.PerfilRepository;
 import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
 import jakarta.persistence.EntityManager;
@@ -19,9 +21,10 @@ public class DataLoaderConfig {
 
     @Autowired
     private PerfilRepository perfilRepository;
-
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
+    private CursoRepository cursoRepository;
 
     @Bean
     CommandLineRunner initDatabase(PerfilRepository perfilRepository, UsuarioRepository usuarioRepository) {
@@ -29,7 +32,10 @@ public class DataLoaderConfig {
 
 //            inserePerfil("Admin");
 
-//            usuarioRepository.save(new Usuario("Joao Frango", "joao@frango.com", "123456"));
+//            insereUsuario("Joao Frango", "joao@frango.com", "123456"));
+
+//            insereCurso("Curso de Crochê", "Classe 1");
+
 
 
         };
@@ -41,6 +47,10 @@ public class DataLoaderConfig {
 
     private void insereUsuario(String nome, String email, String senha){
         usuarioRepository.save(new Usuario(nome, email, senha));
+    }
+
+    private void insereCurso(String nome, String tipo){
+        cursoRepository.save(new Curso(nome, tipo));
     }
 
 

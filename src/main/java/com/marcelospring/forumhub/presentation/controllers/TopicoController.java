@@ -1,10 +1,12 @@
 package com.marcelospring.forumhub.presentation.controllers;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
+import com.marcelospring.forumhub.core.use_cases.curso.RetornarCursoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.CriarTopicoUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.deletar.DeletarTopicoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoDtoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoUseCase;
+import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -20,22 +22,33 @@ public class TopicoController {
     private final RetornarTopicoUseCase retornarTopicoUseCase;
     private final RetornarTopicoDtoByIdUseCase retornarTopicoDtoByIdUseCase;
     private final DeletarTopicoByIdUseCase deletarTopicoByIdUseCase;
+    private final RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase;
+    private final RetornarCursoByIdUseCase retornarCursoByIdUseCase;
 
 
     public TopicoController(CriarTopicoUseCase criarTopicoUseCase,
                             RetornarTopicoUseCase retornarTopicoUseCase,
                             RetornarTopicoDtoByIdUseCase retornarTopicoDtoByIdUseCase,
-                            DeletarTopicoByIdUseCase deletarTopicoByIdUseCase
+                            DeletarTopicoByIdUseCase deletarTopicoByIdUseCase,
+                            RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase,
+                            RetornarCursoByIdUseCase retornarCursoByIdUseCase
     ) {
 
         this.criarTopicoUseCase = criarTopicoUseCase;
         this.retornarTopicoUseCase = retornarTopicoUseCase;
         this.retornarTopicoDtoByIdUseCase = retornarTopicoDtoByIdUseCase;
         this.deletarTopicoByIdUseCase = deletarTopicoByIdUseCase;
+        this.retornarUsuarioByIdUseCase = retornarUsuarioByIdUseCase;
+        this.retornarCursoByIdUseCase = retornarCursoByIdUseCase;
     }
 
     @PostMapping
-    public ResponseEntity<Void> criarTopico(@Valid @RequestBody TopicoDto topicoDto) {
+    public ResponseEntity<Void> criarTopico(@Valid @RequestBody String titulo, String mensagem, Boolean status, Long idAutor, Long idCurso) {
+
+        var usuarioDto = retornarUsuarioByIdUseCase.retornarUsuario(idAutor);
+        var cursoDto = retornarCursoByIdUseCase.retornarCurso(idCurso);
+
+        var topicoDto = new TopicoDto(titulo, mensagem, status, usuarioDto, cursoDto);
 
         criarTopicoUseCase.criarTopico(topicoDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();

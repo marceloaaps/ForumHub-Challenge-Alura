@@ -26,8 +26,9 @@ public class CriarTopicoUseCase {
     }
 
     public void criarTopico(TopicoDto topicoDto) {
+        System.out.println("Recebendo DTO: {}" + topicoDto);
 
-        var topico =converteTopicoUseCase.converteTopicoParaTopico(topicoDto);
+        var topico = converteTopicoUseCase.converteTopicoParaTopico(topicoDto);
 
         if (verificarTopicoUseCase.verificaTopicoTitulo(topicoDto)){
             throw new ExistingTitleException(topicoDto.titulo());
