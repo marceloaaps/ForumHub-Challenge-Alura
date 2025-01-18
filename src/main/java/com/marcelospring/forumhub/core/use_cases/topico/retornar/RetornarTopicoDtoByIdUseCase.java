@@ -13,7 +13,9 @@ public class RetornarTopicoDtoByIdUseCase {
     private final ConverteUsuarioUseCase converteUsuarioUseCase;
     private final ConverteCursoUseCase converteCursoUseCase;
 
-    public RetornarTopicoDtoByIdUseCase(RetornarTopicoByIdUseCase retornar, ConverteUsuarioUseCase converteUsuarioUseCase, ConverteCursoUseCase converteCursoUseCase) {
+    public RetornarTopicoDtoByIdUseCase(RetornarTopicoByIdUseCase retornar,
+                                        ConverteUsuarioUseCase converteUsuarioUseCase,
+                                        ConverteCursoUseCase converteCursoUseCase) {
         this.retornar = retornar;
         this.converteUsuarioUseCase = converteUsuarioUseCase;
         this.converteCursoUseCase = converteCursoUseCase;

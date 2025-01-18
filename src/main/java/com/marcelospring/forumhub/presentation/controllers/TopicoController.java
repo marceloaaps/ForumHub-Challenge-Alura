@@ -52,7 +52,6 @@ public class TopicoController {
             @PathVariable("id") Long id,
             @RequestBody @Valid TopicoDto topicoDto) {
 
-        //ESTA CHAMANDO TOPICOOOOOOOO, TÁ ERRADOOOOOO
         var topicoAntigo = retornarTopicoDtoByIdUseCase.retornarTopicoDtoById(id);
 
 
