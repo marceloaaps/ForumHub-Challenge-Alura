@@ -1,4 +1,4 @@
-package com.marcelospring.forumhub.core.use_cases.topico;
+package com.marcelospring.forumhub.core.use_cases.topico.retornar;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
 import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
@@ -22,3 +22,4 @@ public class RetornarTopicoUseCase {
     }
 
 }
+

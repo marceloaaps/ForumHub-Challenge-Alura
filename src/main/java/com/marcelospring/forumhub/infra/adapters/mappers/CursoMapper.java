@@ -1,9 +1,7 @@
 package com.marcelospring.forumhub.infra.adapters.mappers;
 
 import com.marcelospring.forumhub.core.domain.entities.Curso;
-import com.marcelospring.forumhub.core.domain.entities.Topico;
 import com.marcelospring.forumhub.presentation.dtos.CursoDto;
-import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
