@@ -2,6 +2,7 @@ package com.marcelospring.forumhub.presentation.controllers;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
 import com.marcelospring.forumhub.core.use_cases.topico.CriarTopicoUseCase;
+import com.marcelospring.forumhub.core.use_cases.topico.deletar.DeletarTopicoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoDtoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoUseCase;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
@@ -18,15 +19,19 @@ public class TopicoController {
     private final CriarTopicoUseCase criarTopicoUseCase;
     private final RetornarTopicoUseCase retornarTopicoUseCase;
     private final RetornarTopicoDtoByIdUseCase retornarTopicoDtoByIdUseCase;
+    private final DeletarTopicoByIdUseCase deletarTopicoByIdUseCase;
 
 
     public TopicoController(CriarTopicoUseCase criarTopicoUseCase,
                             RetornarTopicoUseCase retornarTopicoUseCase,
-                           RetornarTopicoDtoByIdUseCase retornarTopicoDtoByIdUseCase) {
+                            RetornarTopicoDtoByIdUseCase retornarTopicoDtoByIdUseCase,
+                            DeletarTopicoByIdUseCase deletarTopicoByIdUseCase
+    ) {
 
         this.criarTopicoUseCase = criarTopicoUseCase;
         this.retornarTopicoUseCase = retornarTopicoUseCase;
         this.retornarTopicoDtoByIdUseCase = retornarTopicoDtoByIdUseCase;
+        this.deletarTopicoByIdUseCase = deletarTopicoByIdUseCase;
     }
 
     @PostMapping
@@ -54,16 +59,20 @@ public class TopicoController {
 
         var topicoAntigo = retornarTopicoDtoByIdUseCase.retornarTopicoDtoById(id);
 
-
         if (topicoAntigo == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
-
 
         criarTopicoUseCase.criarTopico(topicoAntigo);
 
         return ResponseEntity.ok(topicoDto);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarTopico(@PathVariable("id") Long id) {
+        return deletarTopicoByIdUseCase.deletar(id);
+    }
+
 
 
 }

@@ -23,17 +23,15 @@ public class RetornarTopicoDtoByIdUseCase {
 
 
     public TopicoDto retornarTopicoDtoById(Long id) {
-        // Usar o caso de uso que retorna a entidade Topico
         var topico = retornar.retornarTopicoById(id);
 
         if (topico == null) {
-            return null; // Ou lançar uma exceção se preferir
+            return null;
         }
 
         var autor = converteUsuarioUseCase.converteUsuario(topico.getAutor());
         var curso = converteCursoUseCase.converteCurso(topico.getCurso());
 
-        // Converter a entidade Topico para TopicoDto
         return new TopicoDto(
                 topico.getId(),
                 topico.getTitulo(),
