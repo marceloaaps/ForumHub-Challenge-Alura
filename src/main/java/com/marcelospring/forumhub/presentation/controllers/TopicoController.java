@@ -43,12 +43,11 @@ public class TopicoController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> criarTopico(@Valid @RequestBody String titulo, String mensagem, Boolean status, Long idAutor, Long idCurso) {
+    public ResponseEntity<Void> criarTopico(@Valid @RequestBody String titulo, String mensagem, Boolean status, Long autor_id, Long curso_id) {
 
-        var usuarioDto = retornarUsuarioByIdUseCase.retornarUsuario(idAutor);
-        var cursoDto = retornarCursoByIdUseCase.retornarCurso(idCurso);
+        System.out.println("chegou aqui!!");
 
-        var topicoDto = new TopicoDto(titulo, mensagem, status, usuarioDto, cursoDto);
+        var topicoDto = new TopicoDto(titulo, mensagem, status, autor_id, curso_id);
 
         criarTopicoUseCase.criarTopico(topicoDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();

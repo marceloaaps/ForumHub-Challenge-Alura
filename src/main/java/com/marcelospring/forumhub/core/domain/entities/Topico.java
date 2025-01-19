@@ -1,10 +1,7 @@
 package com.marcelospring.forumhub.core.domain.entities;
 
 
-import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -14,16 +11,16 @@ import java.util.List;
 @Table(name = "Topico")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Topico {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private Long id;
 
     private String titulo;
     private String mensagem;
-    @Setter
-    @Getter
     private LocalDateTime dataCriacao;
     private boolean status;
 

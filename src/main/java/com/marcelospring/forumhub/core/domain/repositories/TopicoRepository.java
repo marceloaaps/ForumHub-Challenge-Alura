@@ -5,13 +5,14 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
-    boolean existsByTituloIgnoreCase(@NotBlank String titulo);
+    boolean existsByTituloIgnoreCase(String titulo);
 
-    boolean existsByMensagemIgnoreCase(@NotBlank String titulo);
+    boolean existsByMensagemIgnoreCase(String titulo);
 
     Page<Topico> findAllByOrderByDataCriacaoDesc(Pageable pageable);
 }

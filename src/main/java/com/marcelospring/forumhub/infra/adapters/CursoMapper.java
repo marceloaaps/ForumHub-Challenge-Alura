@@ -1,18 +1,10 @@
-package com.marcelospring.forumhub.infra.adapters.mappers;
+package com.marcelospring.forumhub.infra.adapters;
 
 import com.marcelospring.forumhub.core.domain.entities.Curso;
 import com.marcelospring.forumhub.presentation.dtos.CursoDto;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CursoMapper {
-
-    CursoMapper INSTANCE = Mappers.getMapper(CursoMapper.class);
-
-    CursoMapper toEntity(CursoDto cursoDto);
-
     CursoDto toDto(Curso curso);
-
-
 }

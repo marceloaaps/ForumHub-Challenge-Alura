@@ -36,7 +36,7 @@ public class RetornarTopicoDtoByIdUseCase {
                 topico.getTitulo(),
                 topico.getMensagem(),
                 topico.getStatus(),
-                autor,
-                curso);
+                autor.id(),
+                curso.id());
     }
 }

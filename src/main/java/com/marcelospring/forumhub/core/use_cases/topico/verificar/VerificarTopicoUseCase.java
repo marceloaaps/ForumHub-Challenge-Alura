@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class VerificarTopicoUseCase {
 
-    @Autowired
-    private TopicoRepository repository;
+
+    private final TopicoRepository repository;
+
+    public VerificarTopicoUseCase(TopicoRepository repository) {
+        this.repository = repository;
+    }
 
     public boolean verificaTopicoTitulo(TopicoDto topicoDto) {
         return repository.existsByTituloIgnoreCase(topicoDto.titulo());
