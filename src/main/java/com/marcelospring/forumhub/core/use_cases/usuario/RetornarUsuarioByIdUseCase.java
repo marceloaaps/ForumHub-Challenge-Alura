@@ -5,6 +5,8 @@ import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class RetornarUsuarioByIdUseCase {
 
@@ -16,13 +18,18 @@ public class RetornarUsuarioByIdUseCase {
         this.converteUsuarioUseCase = converteUsuarioUseCase;
     }
 
-
-
+    // AQUI ESTÁ OK, ESTÁ CHEGANDO
     public UsuarioDto retornarUsuario(Long id) {
 
-        Usuario usuario = usuarioRepository.getReferenceById(id);
+        if (usuarioRepository.findById(id).isEmpty()) {
+            throw new NullPointerException("Não existe usuario com id " + id);
+        }
+
+        Usuario usuario = usuarioRepository.findUsuarioById(id);
+
 
         return converteUsuarioUseCase.converteUsuario(usuario);
+
 
     }
 }

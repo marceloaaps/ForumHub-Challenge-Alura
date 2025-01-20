@@ -1,10 +1,12 @@
 package com.marcelospring.forumhub.core.use_cases.topico;
 
+import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
 import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingMessageException;
 import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingTitleException;
 import com.marcelospring.forumhub.core.use_cases.topico.converter.ConverteTopicoUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.verificar.VerificarTopicoUseCase;
+import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import org.springframework.stereotype.Service;
 
@@ -14,33 +16,35 @@ import java.time.LocalDateTime;
 public class CriarTopicoUseCase {
 
     private final TopicoRepository repository;
+    private final RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase;
     private final VerificarTopicoUseCase verificarTopicoUseCase;
     private final ConverteTopicoUseCase converteTopicoUseCase;
 
-    public CriarTopicoUseCase(TopicoRepository repository, ConverteTopicoUseCase converteTopicoUseCase) {
+    public CriarTopicoUseCase(TopicoRepository repository, RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase, ConverteTopicoUseCase converteTopicoUseCase) {
         this.repository = repository;
         this.verificarTopicoUseCase = new VerificarTopicoUseCase(repository);
+        this.retornarUsuarioByIdUseCase = retornarUsuarioByIdUseCase;
         this.converteTopicoUseCase = converteTopicoUseCase;
     }
 
     public void criarTopico(TopicoDto topicoDto) {
-
 
         //PROBLEMA SE ENCONTRA NA PASSAGEM DE TOPICODTO > CURSO
         //O AUTOR E CURSO ID CHEGAM AQUI PELO TOPICODTO MAS NAO ESTAO PASSANDO
 
         var topico = converteTopicoUseCase.converteTopicoDtoParaTopico(topicoDto);
 
+        System.out.println("Usuario do Dto: " + topicoDto.autor()); // RESULTADO ESPERADO
+        System.out.println("Usuario do Topico: " + topico.getId());
+
         if (verificarTopicoUseCase.verificaTopicoTitulo(topicoDto)){
             throw new ExistingTitleException(topicoDto.titulo());
         }
 
-        System.out.println(topico.getAutor());
-        System.out.println(topico.getCurso());
-
         if (verificarTopicoUseCase.verificaTopicoMensagem(topicoDto) ){
             throw new ExistingMessageException((topicoDto.mensagem()));
-        }
+        }   
+        
 
         var data = LocalDateTime.now();
         topico.setDataCriacao(data);

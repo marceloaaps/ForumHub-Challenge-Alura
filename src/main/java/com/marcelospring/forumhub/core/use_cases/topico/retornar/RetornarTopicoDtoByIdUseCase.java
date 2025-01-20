@@ -22,12 +22,19 @@ public class RetornarTopicoDtoByIdUseCase {
     }
 
 
+
+    //NAO ESTÁ CHEGANDO AQUI!!!!
     public TopicoDto retornarTopicoDtoById(Long id) {
         var topico = retornar.retornarTopicoById(id);
 
         if (topico == null) {
             return null;
         }
+
+        System.out.println("RetornarTopicoDtoById: " + topico);
+        System.out.println("RetornarTopicoDtoById: " + topico);
+        System.out.println("RetornarTopicoDtoById: " + topico);
+        System.out.println("RetornarTopicoDtoById: " + topico);
 
         var autor = converteUsuarioUseCase.converteUsuario(topico.getAutor());
         var curso = converteCursoUseCase.converteCurso(topico.getCurso());
