@@ -26,11 +26,11 @@ public class Topico {
     private LocalDateTime dataCriacao;
     private boolean status;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "autor_id")
     private Usuario autor;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
