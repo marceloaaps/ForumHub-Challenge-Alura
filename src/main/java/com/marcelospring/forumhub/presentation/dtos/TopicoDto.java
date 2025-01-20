@@ -10,7 +10,7 @@ public record TopicoDto(
         @NotBlank String titulo,
         @NotBlank String mensagem,
         Boolean status,
-        @NotNull Long autorId,
-        @NotNull Long cursoId
+        @NotNull Long autor,
+        @NotNull Long curso
 ) {
 }

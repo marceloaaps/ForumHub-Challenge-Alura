@@ -25,11 +25,18 @@ public class CriarTopicoUseCase {
 
     public void criarTopico(TopicoDto topicoDto) {
 
+
+        //PROBLEMA SE ENCONTRA NA PASSAGEM DE TOPICODTO > CURSO
+        //O AUTOR E CURSO ID CHEGAM AQUI PELO TOPICODTO MAS NAO ESTAO PASSANDO
+
         var topico = converteTopicoUseCase.converteTopicoDtoParaTopico(topicoDto);
 
         if (verificarTopicoUseCase.verificaTopicoTitulo(topicoDto)){
             throw new ExistingTitleException(topicoDto.titulo());
         }
+
+        System.out.println(topico.getAutor());
+        System.out.println(topico.getCurso());
 
         if (verificarTopicoUseCase.verificaTopicoMensagem(topicoDto) ){
             throw new ExistingMessageException((topicoDto.mensagem()));
@@ -37,7 +44,7 @@ public class CriarTopicoUseCase {
 
         var data = LocalDateTime.now();
         topico.setDataCriacao(data);
-        repository.save(topico);
+//        repository.save(topico);
 
 
     }
