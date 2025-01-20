@@ -1,8 +1,9 @@
 package com.marcelospring.forumhub.core.use_cases.topico.converter;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
-import com.marcelospring.forumhub.core.use_cases.usuario.ConverteUsuarioUseCase;
-import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByIdUseCase;
+import com.marcelospring.forumhub.core.domain.entities.Usuario;
+import com.marcelospring.forumhub.core.domain.repositories.CursoRepository;
+import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
 import com.marcelospring.forumhub.infra.adapters.TopicoMapper;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +14,14 @@ public class ConverteTopicoUseCase {
 
 
     private final TopicoMapper topicoMapper;
-    private final ConverteUsuarioUseCase converteUsuarioUseCase;
-    private final RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase;
+    private final UsuarioRepository usuarioRepository;
+    private final CursoRepository cursoRepository;
 
     @Autowired
-    public ConverteTopicoUseCase(TopicoMapper topicoMapper, ConverteUsuarioUseCase converteUsuarioUseCase, RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase) {
+    public ConverteTopicoUseCase(TopicoMapper topicoMapper, UsuarioRepository usuarioRepository, CursoRepository cursoRepository) {
         this.topicoMapper = topicoMapper;
-        this.converteUsuarioUseCase = converteUsuarioUseCase;
-        this.retornarUsuarioByIdUseCase = retornarUsuarioByIdUseCase;
+        this.usuarioRepository = usuarioRepository;
+        this.cursoRepository = cursoRepository;
     }
 
     public TopicoDto converteTopicoParaDto(Topico topico) {
@@ -29,16 +30,14 @@ public class ConverteTopicoUseCase {
         return topicoMapper.toDto(topico);
     }
 
-
-    // DEVE RECEBER USUARIO E CODE
     public Topico converteTopicoDtoParaTopico(TopicoDto topicoDto) {
 
         Topico topico =  topicoMapper.toEntity(topicoDto);
-        var usuario = retornarUsuarioByIdUseCase.retornarUsuario(topicoDto.autor());
-        converteUsuarioUseCase.converteUsuario(usuario);
+        var usuario = usuarioRepository.findUsuarioById(topicoDto.autor());
+        var curso = cursoRepository.findCursoById(topicoDto.curso());
 
         topico.setAutor(usuario);
-
+        topico.setCurso(curso);
 
         return topico;
     }
