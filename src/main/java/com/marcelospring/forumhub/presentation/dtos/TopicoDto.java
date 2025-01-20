@@ -1,15 +1,14 @@
 package com.marcelospring.forumhub.presentation.dtos;
 
-import com.marcelospring.forumhub.core.domain.entities.Curso;
-import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 public record TopicoDto(
         @NotBlank String titulo,
         @NotBlank String mensagem,
         Boolean status,
-        Usuario autor,
-        Curso curso
+        @NotNull Long autor,
+        @NotNull Long curso
 ) {
 }

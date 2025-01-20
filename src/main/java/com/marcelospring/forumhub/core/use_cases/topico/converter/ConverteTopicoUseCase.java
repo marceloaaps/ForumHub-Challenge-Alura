@@ -1,10 +1,13 @@
 package com.marcelospring.forumhub.core.use_cases.topico.converter;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
-import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.core.domain.repositories.CursoRepository;
 import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
-import com.marcelospring.forumhub.infra.adapters.TopicoMapper;
+import com.marcelospring.forumhub.core.use_cases.curso.ConverteCursoUseCase;
+import com.marcelospring.forumhub.core.use_cases.curso.RetornarCursoByIdUseCase;
+import com.marcelospring.forumhub.core.use_cases.usuario.ConverteUsuarioUseCase;
+import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByIdUseCase;
+import com.marcelospring.forumhub.presentation.controllers.TopicoMapper;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +19,20 @@ public class ConverteTopicoUseCase {
     private final TopicoMapper topicoMapper;
     private final UsuarioRepository usuarioRepository;
     private final CursoRepository cursoRepository;
+    private final RetornarCursoByIdUseCase retornarCursoByIdUseCase;
+    private final ConverteCursoUseCase converteCursoUseCase;
+    private final ConverteUsuarioUseCase converteUsuarioUseCase;
+    private final RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase;
 
     @Autowired
-    public ConverteTopicoUseCase(TopicoMapper topicoMapper, UsuarioRepository usuarioRepository, CursoRepository cursoRepository) {
+    public ConverteTopicoUseCase(TopicoMapper topicoMapper, UsuarioRepository usuarioRepository, CursoRepository cursoRepository, RetornarCursoByIdUseCase retornarCursoByIdUseCase, ConverteCursoUseCase converteCursoUseCase, ConverteUsuarioUseCase converteUsuarioUseCase, RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase) {
         this.topicoMapper = topicoMapper;
         this.usuarioRepository = usuarioRepository;
         this.cursoRepository = cursoRepository;
+        this.retornarCursoByIdUseCase = retornarCursoByIdUseCase;
+        this.converteCursoUseCase = converteCursoUseCase;
+        this.converteUsuarioUseCase = converteUsuarioUseCase;
+        this.retornarUsuarioByIdUseCase = retornarUsuarioByIdUseCase;
     }
 
     public TopicoDto converteTopicoParaDto(Topico topico) {
@@ -32,8 +43,12 @@ public class ConverteTopicoUseCase {
 
         Topico topico =  topicoMapper.toEntity(topicoDto);
 
-        topico.setAutor(topicoDto.autor());
-        topico.setCurso(topicoDto.curso());
+        var curso = retornarCursoByIdUseCase.retornarCurso(topicoDto.curso());
+        var usuario = retornarUsuarioByIdUseCase.retornarUsuario(topicoDto.autor());
+
+        topico.setAutor(converteUsuarioUseCase.converteUsuario(usuario));
+        topico.setCurso(converteCursoUseCase.converteDtoToCurso(curso));
+
 
         return topico;
     }

@@ -17,8 +17,8 @@ public class RetornarCursoByIdUseCase {
     }
 
     public CursoDto retornarCurso(Long id) {
-        Curso curso = cursoRepository.getReferenceById(id);
-        return converteCursoUseCase.converteCurso(curso);
+        Curso curso = cursoRepository.findCursoById(id);
+        return converteCursoUseCase.converteCursoToDto(curso);
     }
 
 }

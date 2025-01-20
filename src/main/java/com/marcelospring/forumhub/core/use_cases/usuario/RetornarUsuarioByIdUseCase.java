@@ -27,8 +27,8 @@ public class RetornarUsuarioByIdUseCase {
 
         Usuario usuario = usuarioRepository.findUsuarioById(id);
 
-
-        return converteUsuarioUseCase.converteUsuario(usuario);
+        System.out.println("Usuario em retornarUsuario: " + usuario);
+        return converteUsuarioUseCase.converteUsuarioToDto(usuario);
 
 
     }

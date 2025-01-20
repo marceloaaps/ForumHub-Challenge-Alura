@@ -88,7 +88,7 @@
 		<dependency>
 			<groupId>org.mapstruct</groupId>
 			<artifactId>mapstruct</artifactId>
-			<version>1.5.3.Final</version>
+			<version>1.5.3.Final</version> <!-- Ou outra versão mais recente -->
 		</dependency>
 		<dependency>
 			<groupId>org.mapstruct</groupId>
@@ -96,6 +96,7 @@
 			<version>1.5.3.Final</version>
 			<scope>provided</scope>
 		</dependency>
+
 
 		<!-- ModelMapper -->
 		<dependency>
@@ -124,17 +125,16 @@
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
-							<version>1.5.3.Final</version>
+							<version>1.5.3.Final</version> <!-- Certifique-se de que a versão está correta -->
 						</path>
 						<path>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
-							<version>1.18.24</version> <!-- Versão corrigida do Lombok -->
+							<version>1.18.24</version> <!-- Versão do Lombok -->
 						</path>
 					</annotationProcessorPaths>
 				</configuration>
 			</plugin>
-
 			<!-- Build Helper Plugin to Add Source Folders -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -155,6 +155,27 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>3.5.0</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/generated-sources/annotations</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 
 			<!-- Spring Boot Maven Plugin -->
 			<plugin>

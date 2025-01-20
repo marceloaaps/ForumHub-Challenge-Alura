@@ -42,7 +42,7 @@ public class RetornarTopicoDtoByIdUseCase {
                 topico.getTitulo(),
                 topico.getMensagem(),
                 topico.getStatus(),
-                topico.getAutor(),
-                topico.getCurso());
+                topico.getAutor().getId(),
+                topico.getCurso().getId());
     }
 }
