@@ -33,7 +33,7 @@ public class ConverteTopicoUseCase {
     public Topico converteTopicoDtoParaTopico(TopicoDto topicoDto) {
 
         Topico topico =  topicoMapper.toEntity(topicoDto);
-        var usuario = usuarioRepository.findUsuarioById(topicoDto.autor());
+        var usuario = usuarioRepository.findUsuarioById(topicoDto.autorDtoId());
         var curso = cursoRepository.findCursoById(topicoDto.curso());
 
         topico.setAutor(usuario);

@@ -1,9 +1,7 @@
 package com.marcelospring.forumhub.core.domain.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
 
@@ -12,6 +10,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Getter
+@Setter
 public class Usuario {
 
     @Id
