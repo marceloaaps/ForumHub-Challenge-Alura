@@ -10,7 +10,7 @@ public record TopicoDto(
         @NotBlank String titulo,
         @NotBlank String mensagem,
         Boolean status,
-        @JsonProperty("autor_id") @NotNull Long autorId,
-        @JsonProperty("curso_id") @NotNull Long cursoId
+        @NotNull Long autorId,
+        @NotNull Long cursoId
 ) {
 }

@@ -24,7 +24,6 @@ public class CriarTopicoUseCase {
     }
 
     public void criarTopico(TopicoDto topicoDto) {
-        System.out.println("Recebendo DTO: {}" + topicoDto);
 
         var topico = converteTopicoUseCase.converteTopicoDtoParaTopico(topicoDto);
 
@@ -38,8 +37,9 @@ public class CriarTopicoUseCase {
 
         var data = LocalDateTime.now();
         topico.setDataCriacao(data);
-
         repository.save(topico);
+
+
     }
 
 
