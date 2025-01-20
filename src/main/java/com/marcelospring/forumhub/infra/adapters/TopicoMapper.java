@@ -6,7 +6,6 @@ import com.marcelospring.forumhub.core.domain.entities.Topico;
 
 @Mapper(componentModel = "spring")
 public interface TopicoMapper {
-
     Topico toEntity(TopicoDto topicoDto);
     TopicoDto toDto(Topico topico);
 }

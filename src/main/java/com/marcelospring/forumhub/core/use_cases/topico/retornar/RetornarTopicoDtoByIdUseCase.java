@@ -36,14 +36,13 @@ public class RetornarTopicoDtoByIdUseCase {
         System.out.println("RetornarTopicoDtoById: " + topico);
         System.out.println("RetornarTopicoDtoById: " + topico);
 
-        var autor = converteUsuarioUseCase.converteUsuario(topico.getAutor());
-        var curso = converteCursoUseCase.converteCurso(topico.getCurso());
+
 
         return new TopicoDto(
                 topico.getTitulo(),
                 topico.getMensagem(),
                 topico.getStatus(),
-                autor.id(),
-                curso.id());
+                topico.getAutor(),
+                topico.getCurso());
     }
 }

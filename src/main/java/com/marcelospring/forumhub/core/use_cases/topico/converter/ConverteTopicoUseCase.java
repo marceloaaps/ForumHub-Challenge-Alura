@@ -25,19 +25,15 @@ public class ConverteTopicoUseCase {
     }
 
     public TopicoDto converteTopicoParaDto(Topico topico) {
-
-
         return topicoMapper.toDto(topico);
     }
 
     public Topico converteTopicoDtoParaTopico(TopicoDto topicoDto) {
 
         Topico topico =  topicoMapper.toEntity(topicoDto);
-        var usuario = usuarioRepository.findUsuarioById(topicoDto.autor());
-        var curso = cursoRepository.findCursoById(topicoDto.curso());
 
-        topico.setAutor(usuario);
-        topico.setCurso(curso);
+        topico.setAutor(topicoDto.autor());
+        topico.setCurso(topicoDto.curso());
 
         return topico;
     }
