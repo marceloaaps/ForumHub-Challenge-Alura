@@ -1,8 +1,6 @@
 package com.marcelospring.forumhub.core.use_cases.topico;
 
-import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
-import com.marcelospring.forumhub.core.use_cases.curso.ConverteCursoUseCase;
 import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingMessageException;
 import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingTitleException;
 import com.marcelospring.forumhub.core.use_cases.topico.converter.ConverteTopicoUseCase;
@@ -11,7 +9,6 @@ import com.marcelospring.forumhub.core.use_cases.usuario.ConverteUsuarioUseCase;
 import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,6 +30,7 @@ public class CriarTopicoUseCase {
         this.converteUsuarioUseCase = converteUsuarioUseCase;
     }
 
+    //Cabe uma refatoração para abstração aqui.
     public void criarTopico(TopicoDto topicoDto) {
 
         UsuarioDto autor = retornarUsuarioByIdUseCase.retornarUsuario(topicoDto.autor());
@@ -59,6 +57,7 @@ public class CriarTopicoUseCase {
         var data = LocalDateTime.now();
         topico.setDataCriacao(data);
 
+
         System.out.println(topico);
         System.out.println(topico);
         System.out.println(topico);
@@ -66,7 +65,7 @@ public class CriarTopicoUseCase {
         System.out.println(topico);
         System.out.println(topico);
 
-//        repository.save(topico);
+        repository.save(topico);
     }
 
 
