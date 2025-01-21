@@ -1,7 +1,7 @@
 package com.marcelospring.forumhub.core.use_cases.curso;
 
 import com.marcelospring.forumhub.core.domain.entities.Curso;
-import com.marcelospring.forumhub.presentation.controllers.CursoMapper;
+import com.marcelospring.forumhub.infra.mappers.CursoMapper;
 import com.marcelospring.forumhub.presentation.dtos.CursoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

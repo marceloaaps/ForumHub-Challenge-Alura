@@ -35,35 +35,39 @@ public class CriarTopicoUseCase {
 
     public void criarTopico(TopicoDto topicoDto) {
 
-        // Verifica se o usuário existe
         UsuarioDto autor = retornarUsuarioByIdUseCase.retornarUsuario(topicoDto.autor());
+        System.out.println("\nAutor Começo do criarTopico: " + autor); // AQUI JA CHEGA NULL
+
 
         if (autor == null) {
             throw new RuntimeException("Usuário inexistente");
         }
 
-        // Converte o DTO para a entidade de Tópico
+
         var topico = converteTopicoUseCase.converteTopicoDtoParaTopico(topicoDto);
 
-        // Verifica se o título do tópico já existe
         if (verificarTopicoUseCase.verificaTopicoTitulo(topicoDto)) {
             throw new ExistingTitleException(topicoDto.titulo());
         }
 
-        // Verifica se a mensagem do tópico já existe
         if (verificarTopicoUseCase.verificaTopicoMensagem(topicoDto)) {
             throw new ExistingMessageException(topicoDto.mensagem());
         }
 
-        // Define o autor do tópico se ele existe
         topico.setAutor(converteUsuarioUseCase.converteUsuario(autor));
 
-        // Define a data de criação do tópico
         var data = LocalDateTime.now();
         topico.setDataCriacao(data);
 
-        // Salva o tópico no repositório
-        repository.save(topico);
+        // Ate aqui o usuario e curso estao chegando null.
+        System.out.println(topico);
+        System.out.println(topico);
+        System.out.println(topico);
+        System.out.println(topico);
+        System.out.println(topico);
+        System.out.println(topico);
+
+//        repository.save(topico);
     }
 
 

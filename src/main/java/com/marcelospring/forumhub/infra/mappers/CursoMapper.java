@@ -1,4 +1,4 @@
-package com.marcelospring.forumhub.presentation.controllers;
+package com.marcelospring.forumhub.infra.mappers;
 
 import com.marcelospring.forumhub.core.domain.entities.Curso;
 import com.marcelospring.forumhub.presentation.dtos.CursoDto;

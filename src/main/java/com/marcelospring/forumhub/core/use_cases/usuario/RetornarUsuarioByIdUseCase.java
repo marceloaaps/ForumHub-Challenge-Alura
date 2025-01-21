@@ -18,17 +18,20 @@ public class RetornarUsuarioByIdUseCase {
         this.converteUsuarioUseCase = converteUsuarioUseCase;
     }
 
-    // AQUI ESTÁ OK, ESTÁ CHEGANDO
+
+    //ERRO ESTA AQUI
     public UsuarioDto retornarUsuario(Long id) {
+
 
         if (usuarioRepository.findById(id).isEmpty()) {
             throw new NullPointerException("Não existe usuario com id " + id);
         }
 
         Usuario usuario = usuarioRepository.findUsuarioById(id);
+        System.out.println("Usaurio no retornarUsuario"+usuario);
 
         System.out.println("Usuario em retornarUsuario: " + usuario);
-        return converteUsuarioUseCase.converteUsuarioToDto(usuario);
+        return converteUsuarioUseCase.converteUsuarioToDto(usuario); // AQUI ESTÁ O REAL PROBLEM
 
 
     }

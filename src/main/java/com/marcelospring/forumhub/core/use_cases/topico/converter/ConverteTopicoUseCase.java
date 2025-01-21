@@ -7,7 +7,7 @@ import com.marcelospring.forumhub.core.use_cases.curso.ConverteCursoUseCase;
 import com.marcelospring.forumhub.core.use_cases.curso.RetornarCursoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.usuario.ConverteUsuarioUseCase;
 import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByIdUseCase;
-import com.marcelospring.forumhub.presentation.controllers.TopicoMapper;
+import com.marcelospring.forumhub.infra.mappers.TopicoMapper;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +38,7 @@ public class ConverteTopicoUseCase {
     public TopicoDto converteTopicoParaDto(Topico topico) {
         return topicoMapper.toDto(topico);
     }
+
 
     public Topico converteTopicoDtoParaTopico(TopicoDto topicoDto) {
 
