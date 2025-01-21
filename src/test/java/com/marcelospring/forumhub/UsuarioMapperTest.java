@@ -2,9 +2,8 @@ package com.marcelospring.forumhub;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.marcelospring.forumhub.core.domain.entities.Usuario;
+import com.marcelospring.forumhub.infra.mappers.CursoMapper;
 import com.marcelospring.forumhub.infra.mappers.UsuarioMapper;
-import com.marcelospring.forumhub.presentation.controllers.UsuarioMapperImpl;
-import com.marcelospring.forumhub.presentation.dtos.PerfilDto;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @JsonIgnoreType
 public class UsuarioMapperTest {
 
-    private final UsuarioMapper usuarioMapper = new UsuarioMapperImpl();
 
     @Test
     public void testToEntity() {
         UsuarioDto dto = new UsuarioDto(1L, "John Doe", "johnemail@email.com", "1234");
 
 
-        Usuario usuario = usuarioMapper.toEntity(dto);
+
+        Usuario usuario = UsuarioMapper.INSTANCE.toEntity(dto);
 
         assertNotNull(usuario);
         assertEquals(dto.id(), usuario.getId());
@@ -34,7 +33,7 @@ public class UsuarioMapperTest {
         usuario.setId(1L);
         usuario.setNome("John Doe");
 
-        UsuarioDto dto = usuarioMapper.toDto(usuario);
+        UsuarioDto dto = UsuarioMapper.INSTANCE.toDto(usuario);
 
         assertNotNull(dto);
         assertEquals(usuario.getId(), dto.id());
