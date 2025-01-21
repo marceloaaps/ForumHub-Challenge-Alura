@@ -19,7 +19,6 @@ public class RetornarUsuarioByIdUseCase {
     }
 
 
-    //ERRO ESTA AQUI
     public UsuarioDto retornarUsuario(Long id) {
 
 
@@ -31,7 +30,7 @@ public class RetornarUsuarioByIdUseCase {
         System.out.println("Usaurio no retornarUsuario"+usuario);
 
         System.out.println("Usuario em retornarUsuario: " + usuario);
-        return converteUsuarioUseCase.converteUsuarioToDto(usuario); // AQUI ESTÁ O REAL PROBLEM
+        return converteUsuarioUseCase.converteUsuarioToDto(usuario);
 
 
     }

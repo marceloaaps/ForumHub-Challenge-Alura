@@ -59,7 +59,6 @@ public class CriarTopicoUseCase {
         var data = LocalDateTime.now();
         topico.setDataCriacao(data);
 
-        // Ate aqui o usuario e curso estao chegando null.
         System.out.println(topico);
         System.out.println(topico);
         System.out.println(topico);

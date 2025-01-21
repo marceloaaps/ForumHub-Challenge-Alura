@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ConverteUsuarioUseCase {
 
-    //ERRO SE ENCONTRA AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
     private final UsuarioMapper usuarioMapper;
 
     @Autowired
@@ -24,7 +22,6 @@ public class ConverteUsuarioUseCase {
     }
 
 
-    //ERRO ESTÁ AQUI!!!!!!!!!!!!!!!
     public Usuario converteUsuario(UsuarioDto usuarioDto) {
         System.out.println("converteUsuario" + usuarioDto);
         System.out.println("converteUsuario" + usuarioDto);
