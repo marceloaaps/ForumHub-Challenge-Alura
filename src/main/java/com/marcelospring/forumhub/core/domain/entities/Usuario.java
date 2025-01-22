@@ -3,6 +3,7 @@ package com.marcelospring.forumhub.core.domain.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -41,7 +42,16 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        String role = String.valueOf(this.perfis.stream()
+                .anyMatch(perfil -> "Admin".equals(perfil.getName())));
+
+
+        return switch (role) {
+            case "Admin" -> List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            case "User" -> List.of(new SimpleGrantedAuthority("ROLE_USER"));
+            case "Guest" -> List.of(new SimpleGrantedAuthority("ROLE_GUEST"));
+            default -> throw new RuntimeException("Erro ao obter perfil");
+        };
     }
 
     @Override
