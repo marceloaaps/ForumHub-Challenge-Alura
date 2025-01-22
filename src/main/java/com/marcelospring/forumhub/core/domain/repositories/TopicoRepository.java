@@ -1,6 +1,7 @@
 package com.marcelospring.forumhub.core.domain.repositories;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
+import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,5 +15,5 @@ public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
     boolean existsByMensagemIgnoreCase(String titulo);
 
-    Page<Topico> findAllByOrderByDataCriacaoDesc(Pageable pageable);
+    Page<TopicoDto> findAllByOrderByDataCriacaoDesc(Pageable pageable);
 }

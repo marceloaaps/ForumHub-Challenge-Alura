@@ -10,6 +10,7 @@ import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByIdUseC
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,8 +53,9 @@ public class TopicoController {
     }
 
     @GetMapping
-    public Page<Topico> getTopicos() {
-        return retornarTopicoUseCase.findAllByOrderByDataCriacaoDesc();
+    public ResponseEntity<Page<TopicoDto>> getTopicos(Pageable pageable) {
+        Page<TopicoDto> topicos = retornarTopicoUseCase.findAll(pageable);
+        return ResponseEntity.ok(topicos);
     }
 
     @GetMapping("/{id}")
