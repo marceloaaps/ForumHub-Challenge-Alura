@@ -32,7 +32,7 @@ public class DataLoaderConfig {
 
 //            inserePerfil("Admin");
 
-//            insereUsuario("Joao Frango", "joao@frango.com", "123456"));
+//            insereUsuario("Giga Chad", "cortinas@gavia1.com", "123456", "Admin");
 
 //            insereCurso("Curso de Crochê", "Classe 1");
 
@@ -45,7 +45,7 @@ public class DataLoaderConfig {
         perfilRepository.save(new Perfil(nomePerfil));
     }
 
-    private void insereUsuario(String nome, String email, String senha){
+    private void insereUsuario(String nome, String email, String senha, String perfil){
         usuarioRepository.save(new Usuario(nome, email, senha));
     }
 
