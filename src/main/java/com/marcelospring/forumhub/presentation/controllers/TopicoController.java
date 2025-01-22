@@ -77,6 +77,7 @@ public class TopicoController {
         return ResponseEntity.ok(topicoDto);
     }
 
+    //Alterar para soft delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarTopico(@PathVariable("id") Long id) {
         return deletarTopicoByIdUseCase.deletar(id);
