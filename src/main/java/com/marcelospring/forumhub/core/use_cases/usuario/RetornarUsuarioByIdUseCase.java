@@ -5,8 +5,6 @@ import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class RetornarUsuarioByIdUseCase {
 

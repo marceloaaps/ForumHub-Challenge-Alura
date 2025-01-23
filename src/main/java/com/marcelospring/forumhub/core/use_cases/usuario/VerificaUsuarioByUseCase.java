@@ -6,16 +6,15 @@ import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class VerificaUsuario {
+public class VerificaUsuarioByUseCase {
 
     private UsuarioRepository usuarioRepository;
 
-    public String usuarioExiste(UsuarioDto usuarioDto) throws ExistingEmailException {
+    public void usuarioExiste(UsuarioDto usuarioDto) throws ExistingEmailException {
         if (usuarioRepository.findDtoUsuarioByEmail(usuarioDto.email())!=null) {
             throw new ExistingEmailException(usuarioDto.email());
         }
 
-        return usuarioDto.email();
     }
 
 }
