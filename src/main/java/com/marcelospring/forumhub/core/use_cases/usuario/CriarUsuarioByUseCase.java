@@ -20,7 +20,7 @@ public class CriarUsuarioByUseCase {
         this.verificaUsuarioByUseCase = verificaUsuarioByUseCase;
     }
 
-    public void criarUsuario(UsuarioDto usuarioDto) throws ExistingEmailException {
+    public void criarUsuario(UsuarioDto usuarioDto){
         verificaUsuarioByUseCase.usuarioExiste(usuarioDto);
         var usuario = converteUsuarioUseCase.converteUsuario(usuarioDto);
         usuarioRepository.save(usuario);
