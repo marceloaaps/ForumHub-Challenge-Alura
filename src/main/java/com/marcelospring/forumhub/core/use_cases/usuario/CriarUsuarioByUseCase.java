@@ -2,6 +2,7 @@ package com.marcelospring.forumhub.core.use_cases.usuario;
 
 import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
 import com.marcelospring.forumhub.infra.exceptions.ExistingEmailException;
+import com.marcelospring.forumhub.infra.security.service.PasswordEncoder;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +14,20 @@ public class CriarUsuarioByUseCase {
 
     private final ConverteUsuarioUseCase converteUsuarioUseCase;
     private final VerificaUsuarioByUseCase verificaUsuarioByUseCase;
+    private final PasswordEncoder passwordEncoder;
 
-    public CriarUsuarioByUseCase(UsuarioRepository usuarioRepository, ConverteUsuarioUseCase converteUsuarioUseCase, VerificaUsuarioByUseCase verificaUsuarioByUseCase) {
+    public CriarUsuarioByUseCase(UsuarioRepository usuarioRepository, ConverteUsuarioUseCase converteUsuarioUseCase, VerificaUsuarioByUseCase verificaUsuarioByUseCase, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.converteUsuarioUseCase = converteUsuarioUseCase;
         this.verificaUsuarioByUseCase = verificaUsuarioByUseCase;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public void criarUsuario(UsuarioDto usuarioDto){
         verificaUsuarioByUseCase.usuarioExiste(usuarioDto);
         var usuario = converteUsuarioUseCase.converteUsuario(usuarioDto);
+
+        usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         usuarioRepository.save(usuario);
     }
 }
