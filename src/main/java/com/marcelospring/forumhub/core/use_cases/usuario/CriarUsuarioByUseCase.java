@@ -11,7 +11,6 @@ public class CriarUsuarioByUseCase {
 
 
     private final UsuarioRepository usuarioRepository;
-
     private final ConverteUsuarioUseCase converteUsuarioUseCase;
     private final VerificaUsuarioByUseCase verificaUsuarioByUseCase;
     private final PasswordEncoder passwordEncoder;

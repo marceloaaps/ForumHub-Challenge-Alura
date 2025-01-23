@@ -26,13 +26,10 @@ public class Usuario implements UserDetails {
     private String email;
     private String senha;
 
-    @ManyToMany
-    @JoinTable(
-            name = "usuario_perfil",
-            joinColumns = @JoinColumn(name = "usuario_id"),
-            inverseJoinColumns = @JoinColumn(name = "perfil_id")
-    )
-    private List<Perfil> perfis;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(
+            name = "perfil_id", referencedColumnName ="id")
+    private Perfil role;
 
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
@@ -42,9 +39,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String role = String.valueOf(this.perfis.stream()
-                .anyMatch(perfil -> "Admin".equals(perfil.getName())));
-
+        String role = String.valueOf(this.role.getName());
 
         return switch (role) {
             case "Admin" -> List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
