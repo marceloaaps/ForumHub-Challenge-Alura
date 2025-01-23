@@ -1,6 +1,7 @@
 package com.marcelospring.forumhub;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import com.marcelospring.forumhub.core.domain.entities.Perfil;
 import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.infra.mappers.CursoMapper;
 import com.marcelospring.forumhub.infra.mappers.UsuarioMapper;
@@ -16,9 +17,10 @@ public class UsuarioMapperTest {
 
     @Test
     public void testToEntity() {
-        UsuarioDto dto = new UsuarioDto(1L, "John Doe", "johnemail@email.com", "1234");
 
+        Perfil perfil = new Perfil("Admin");
 
+        UsuarioDto dto = new UsuarioDto(1L, "John Doe", "johnemail@email.com", "1234", perfil);
 
         Usuario usuario = UsuarioMapper.INSTANCE.toEntity(dto);
 

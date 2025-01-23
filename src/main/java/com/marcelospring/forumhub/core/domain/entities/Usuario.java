@@ -26,16 +26,18 @@ public class Usuario implements UserDetails {
     private String email;
     private String senha;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(
             name = "perfil_id", referencedColumnName ="id")
     private Perfil role;
 
-    public Usuario(String nome, String email, String senha) {
+    public Usuario(String nome, String email, String senha, Perfil role) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+        this.role = role;
     }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

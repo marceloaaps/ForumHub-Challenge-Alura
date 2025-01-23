@@ -32,29 +32,25 @@ public class DataLoaderConfig {
 
 //            inserePerfil("Admin");
 
-//            insereUsuario("Giga Chad", "cortinas@gavia1.com", "123456", "Admin");
+            insereUsuario("Giga Chad", "cortinas@gavia1.com", "123456", perfilRepository.getPerfilById(1L));
 
 //            insereCurso("Curso de Crochê", "Classe 1");
-
 
 
         };
     }
 
-    private void inserePerfil(String nomePerfil){
+    private void inserePerfil(String nomePerfil) {
         perfilRepository.save(new Perfil(nomePerfil));
     }
 
-    private void insereUsuario(String nome, String email, String senha, String perfil){
-        usuarioRepository.save(new Usuario(nome, email, senha));
+    private void insereUsuario(String nome, String email, String senha, Perfil perfil) {
+        usuarioRepository.save(new Usuario(nome, email, senha, perfil));
     }
 
-    private void insereCurso(String nome, String tipo){
+    private void insereCurso(String nome, String tipo) {
         cursoRepository.save(new Curso(nome, tipo));
     }
-
-
-
 
 
 }
