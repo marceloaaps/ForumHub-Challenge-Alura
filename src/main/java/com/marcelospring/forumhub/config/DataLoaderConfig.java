@@ -31,9 +31,11 @@ public class DataLoaderConfig {
         return args -> {
 
 //            inserePerfil("Admin");
-
-            insereUsuario("Giga Chad", "cortinas@gavia1.com", "123456", perfilRepository.getPerfilById(1L));
-
+//            inserePerfil("Member");
+//            inserePerfil("Guest");
+//
+//            insereUsuario("Giga Chad", "cortinas@gavia1.com", "123456", perfilRepository.getPerfilById(1L));
+//
 //            insereCurso("Curso de Crochê", "Classe 1");
 
 
