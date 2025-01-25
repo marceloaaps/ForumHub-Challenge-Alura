@@ -17,7 +17,7 @@ public class CriarUsuarioByUseCase {
     private final VerificaUsuarioByUseCase verificaUsuarioByUseCase;
     private final PasswordEncoder passwordEncoder;
 
-    public CriarUsuarioByUseCase(UsuarioRepository usuarioRepository, ConverteUsuarioUseCase converteUsuarioUseCase, VerificaUsuarioByUseCase verificaUsuarioByUseCase, PasswordEncoder passwordEncoder, UsuarioDto usuarioDto) {
+    public CriarUsuarioByUseCase(UsuarioRepository usuarioRepository, ConverteUsuarioUseCase converteUsuarioUseCase, VerificaUsuarioByUseCase verificaUsuarioByUseCase, PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.converteUsuarioUseCase = converteUsuarioUseCase;
         this.verificaUsuarioByUseCase = verificaUsuarioByUseCase;
