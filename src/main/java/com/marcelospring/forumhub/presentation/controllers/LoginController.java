@@ -1,6 +1,7 @@
 package com.marcelospring.forumhub.presentation.controllers;
 
 import com.marcelospring.forumhub.core.use_cases.usuario.CriarUsuarioByUseCase;
+import com.marcelospring.forumhub.presentation.dtos.AuthDto;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class LoginController {
 
     @Autowired
@@ -23,7 +24,6 @@ public class LoginController {
     private CriarUsuarioByUseCase criarUsuario;
 
 
-    // Cabe uma criação de metodo para abstracao
     @PostMapping("/login")
     public ResponseEntity login(@RequestParam @Valid UsuarioDto usuarioDto){
 
@@ -35,9 +35,9 @@ public class LoginController {
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity register(@RequestParam @Valid UsuarioDto usuarioDto){
+    public ResponseEntity register(@RequestParam @Valid AuthDto authDto){
 
-        criarUsuario.criarUsuario(usuarioDto);
+        criarUsuario.criarUsuario(authDto);
         return ResponseEntity.ok().build();
     }
 
