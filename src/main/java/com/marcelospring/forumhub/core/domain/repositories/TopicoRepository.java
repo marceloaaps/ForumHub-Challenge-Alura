@@ -10,10 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
-
     boolean existsByTituloIgnoreCase(String titulo);
-
     boolean existsByMensagemIgnoreCase(String titulo);
-
     Page<TopicoDto> findAllByOrderByDataCriacaoDesc(Pageable pageable);
 }

@@ -23,7 +23,6 @@ public class LoginController {
     @Autowired
     private CriarUsuarioByUseCase criarUsuario;
 
-
     @PostMapping("/login")
     public ResponseEntity<Authentication> login(@RequestBody @Valid LoginDto loginDto){
 
@@ -31,12 +30,10 @@ public class LoginController {
         var auth = this.authenticationManager.authenticate(senhaDoUsuario);
 
         return ResponseEntity.ok().build();
-
     }
 
     @PostMapping("/registrar")
     public ResponseEntity<Void> register(@RequestBody @Valid AuthDto authDto){
-
         criarUsuario.criarUsuario(authDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

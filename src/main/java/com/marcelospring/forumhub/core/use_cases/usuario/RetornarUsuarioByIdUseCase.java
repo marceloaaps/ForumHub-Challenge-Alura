@@ -16,9 +16,7 @@ public class RetornarUsuarioByIdUseCase {
         this.converteUsuarioUseCase = converteUsuarioUseCase;
     }
 
-
     public UsuarioDto retornarUsuario(Long id) {
-
 
         if (usuarioRepository.findById(id).isEmpty()) {
             throw new NullPointerException("Não existe usuario com id " + id);

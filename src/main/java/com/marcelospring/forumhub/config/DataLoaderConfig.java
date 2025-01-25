@@ -6,18 +6,14 @@ import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.core.domain.repositories.CursoRepository;
 import com.marcelospring.forumhub.core.domain.repositories.PerfilRepository;
 import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@Deprecated
 public class DataLoaderConfig {
-
-    @PersistenceContext
-    private EntityManager entityManager;
 
     @Autowired
     private PerfilRepository perfilRepository;
@@ -25,20 +21,17 @@ public class DataLoaderConfig {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private CursoRepository cursoRepository;
-
-    @Bean
+    //PARA FAZER VOLTAR A FUNCIONAR A CLASSE, TIRE O COMENTARIO DA @BEAN
+    //@Bean
     CommandLineRunner initDatabase(PerfilRepository perfilRepository, UsuarioRepository usuarioRepository) {
         return args -> {
+            inserePerfil("Admin");
+            inserePerfil("Member");
+            inserePerfil("Guest");
 
-//            inserePerfil("Admin");
-//            inserePerfil("Member");
-//            inserePerfil("Guest");
-//
-//            insereUsuario("Giga Chad", "cortinas@gavia1.com", "123456", perfilRepository.getPerfilById(1L));
-//
-//            insereCurso("Curso de Crochê", "Classe 1");
+            insereUsuario("Giga Chad", "cortinas@gavia1.com", "123456", perfilRepository.getPerfilById(1L));
 
-
+            insereCurso("Curso de Crochê", "Classe 1");
         };
     }
 
@@ -53,6 +46,4 @@ public class DataLoaderConfig {
     private void insereCurso(String nome, String tipo) {
         cursoRepository.save(new Curso(nome, tipo));
     }
-
-
 }

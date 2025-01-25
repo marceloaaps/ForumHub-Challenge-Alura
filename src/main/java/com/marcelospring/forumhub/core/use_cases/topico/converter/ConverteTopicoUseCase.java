@@ -50,7 +50,6 @@ public class ConverteTopicoUseCase {
         topico.setAutor(converteUsuarioUseCase.converteUsuario(usuario));
         topico.setCurso(converteCursoUseCase.converteDtoToCurso(curso));
 
-
         return topico;
     }
 

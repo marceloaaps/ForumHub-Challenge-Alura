@@ -3,7 +3,6 @@ package com.marcelospring.forumhub.core.use_cases.topico.retornar;
 import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
 import com.marcelospring.forumhub.infra.mappers.TopicoMapper;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

@@ -2,12 +2,10 @@ package com.marcelospring.forumhub.core.use_cases.topico.verificar;
 
 import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VerificarTopicoUseCase {
-
 
     private final TopicoRepository repository;
 

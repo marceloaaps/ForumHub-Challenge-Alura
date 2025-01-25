@@ -19,7 +19,6 @@ public interface TopicoMapper {
     @Mapping(target = "curso", source = "curso", qualifiedByName = "mapCursoToLong")
     TopicoDto toDto(Topico topico);
 
-
     @Named("mapUsuarioToLong")
     default Long mapUsuarioToLong(Usuario usuario) {
         if (usuario == null) {

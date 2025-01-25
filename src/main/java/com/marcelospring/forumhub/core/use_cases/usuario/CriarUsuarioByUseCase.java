@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class CriarUsuarioByUseCase {
 
-
     private final UsuarioRepository usuarioRepository;
     private final ConverteUsuarioUseCase converteUsuarioUseCase;
     private final VerificaUsuarioByUseCase verificaUsuarioByUseCase;
@@ -22,7 +21,6 @@ public class CriarUsuarioByUseCase {
     }
 
     public void criarUsuario(AuthDto authDto){
-
 
         verificaUsuarioByUseCase.usuarioExiste(authDto.email());
         var usuario = converteUsuarioUseCase.converteUsuarioByAuth(authDto);

@@ -16,7 +16,6 @@ public class ConverteCursoUseCase {
         this.cursoMapper = cursoMapper;
     }
 
-
     public CursoDto converteCursoToDto(Curso curso) {
         return cursoMapper.toDto(curso);
     }

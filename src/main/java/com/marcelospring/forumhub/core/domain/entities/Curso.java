@@ -22,9 +22,5 @@ public class Curso {
     public Curso(String nome, String tipo) {
         this.name = nome;
         this.categoria = tipo;
-
-
-
     }
-
 }

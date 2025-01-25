@@ -1,6 +1,5 @@
 package com.marcelospring.forumhub.core.use_cases.exceptions;
 
-
 public class ExistingTitleException extends RuntimeException {
 
     public ExistingTitleException(String titulo) {

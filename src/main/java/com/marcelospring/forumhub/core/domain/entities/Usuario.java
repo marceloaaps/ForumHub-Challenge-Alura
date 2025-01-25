@@ -38,7 +38,6 @@ public class Usuario implements UserDetails {
         this.role = role;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         String role = String.valueOf(this.role.getName());
