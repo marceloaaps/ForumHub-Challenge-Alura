@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class VerificaUsuarioByUseCase {
 
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
+
+    public VerificaUsuarioByUseCase(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
+    }
 
     public void usuarioExiste(String email) {
         if (usuarioRepository.findDtoUsuarioByEmail(email) != null) {

@@ -44,7 +44,7 @@ public class TopicoController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> criarTopico(@RequestBody TopicoDto topicoDto) {
+    public ResponseEntity<Void> criarTopico(@RequestBody @Valid TopicoDto topicoDto) {
 
 
         criarTopicoUseCase.criarTopico(topicoDto);

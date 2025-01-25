@@ -36,11 +36,9 @@ public class CriarTopicoUseCase {
         UsuarioDto autor = retornarUsuarioByIdUseCase.retornarUsuario(topicoDto.autor());
         System.out.println("\nAutor Começo do criarTopico: " + autor); // AQUI JA CHEGA NULL
 
-
         if (autor == null) {
             throw new RuntimeException("Usuário inexistente");
         }
-
 
         var topico = converteTopicoUseCase.converteTopicoDtoParaTopico(topicoDto);
 
@@ -56,14 +54,6 @@ public class CriarTopicoUseCase {
 
         var data = LocalDateTime.now();
         topico.setDataCriacao(data);
-
-
-        System.out.println(topico);
-        System.out.println(topico);
-        System.out.println(topico);
-        System.out.println(topico);
-        System.out.println(topico);
-        System.out.println(topico);
 
         repository.save(topico);
     }
