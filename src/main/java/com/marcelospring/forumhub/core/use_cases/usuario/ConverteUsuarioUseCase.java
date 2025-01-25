@@ -1,6 +1,7 @@
 package com.marcelospring.forumhub.core.use_cases.usuario;
 
 import com.marcelospring.forumhub.core.domain.entities.Usuario;
+import com.marcelospring.forumhub.core.use_cases.perfil.RetornarPerfilByUseCase;
 import com.marcelospring.forumhub.infra.mappers.UsuarioMapper;
 import com.marcelospring.forumhub.presentation.dtos.AuthDto;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
@@ -11,14 +12,17 @@ import org.springframework.stereotype.Service;
 public class ConverteUsuarioUseCase {
 
     private final UsuarioMapper usuarioMapper;
+    private final RetornarPerfilByUseCase retornarPerfilByUseCase;
 
     @Autowired
-    public ConverteUsuarioUseCase(UsuarioMapper usuarioMapper) {
+    public ConverteUsuarioUseCase(UsuarioMapper usuarioMapper, RetornarPerfilByUseCase retornarPerfilByUseCase) {
         this.usuarioMapper = usuarioMapper;
+        this.retornarPerfilByUseCase = retornarPerfilByUseCase;
     }
 
     public Usuario converteUsuarioByAuth(AuthDto authDto) {
-        return new Usuario(authDto.nome(), authDto.email(), authDto.senha(), authDto.role());
+        var authRole = retornarPerfilByUseCase.retornarPerfil(authDto.role());
+        return new Usuario(authDto.nome(), authDto.email(), authDto.senha(), authRole);
 
     }
 
