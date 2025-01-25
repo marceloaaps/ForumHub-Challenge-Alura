@@ -3,7 +3,6 @@ package com.marcelospring.forumhub;
 import com.fasterxml.jackson.annotation.JsonIgnoreType;
 import com.marcelospring.forumhub.core.domain.entities.Perfil;
 import com.marcelospring.forumhub.core.domain.entities.Usuario;
-import com.marcelospring.forumhub.infra.mappers.CursoMapper;
 import com.marcelospring.forumhub.infra.mappers.UsuarioMapper;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.junit.jupiter.api.Test;

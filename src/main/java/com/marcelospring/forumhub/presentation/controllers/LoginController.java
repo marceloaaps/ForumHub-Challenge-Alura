@@ -2,6 +2,7 @@ package com.marcelospring.forumhub.presentation.controllers;
 
 import com.marcelospring.forumhub.core.use_cases.usuario.CriarUsuarioByUseCase;
 import com.marcelospring.forumhub.presentation.dtos.AuthDto;
+import com.marcelospring.forumhub.presentation.dtos.LoginDto;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,17 +25,17 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestParam @Valid UsuarioDto usuarioDto){
+    public ResponseEntity<Authentication> login(@RequestBody @Valid LoginDto loginDto){
 
-        var senhaDoUsuario = new UsernamePasswordAuthenticationToken(usuarioDto.email(), usuarioDto.senha());
-        var auth = authenticationManager.authenticate(senhaDoUsuario);
+        var senhaDoUsuario = new UsernamePasswordAuthenticationToken(loginDto.email(), loginDto.senha());
+        var auth = this.authenticationManager.authenticate(senhaDoUsuario);
 
-        return ResponseEntity.ok().body(auth);
+        return ResponseEntity.ok().build();
 
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity register(@RequestBody @Valid AuthDto authDto){
+    public ResponseEntity<Void> register(@RequestBody @Valid AuthDto authDto){
 
         criarUsuario.criarUsuario(authDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
