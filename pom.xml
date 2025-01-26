@@ -122,10 +122,11 @@
 		</dependency>
 
 		<!-- Json Web Token (JWT) -->
+		<!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
 		<dependency>
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
-			<version>4.5.0</version>
+			<version>4.4.0</version>
 		</dependency>
 
 	</dependencies>

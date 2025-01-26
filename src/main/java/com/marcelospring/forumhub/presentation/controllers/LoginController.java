@@ -3,7 +3,6 @@ package com.marcelospring.forumhub.presentation.controllers;
 import com.marcelospring.forumhub.core.use_cases.usuario.CriarUsuarioByUseCase;
 import com.marcelospring.forumhub.presentation.dtos.AuthDto;
 import com.marcelospring.forumhub.presentation.dtos.LoginDto;
-import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
