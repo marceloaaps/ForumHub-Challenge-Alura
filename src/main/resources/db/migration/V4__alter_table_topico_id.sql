@@ -1,10 +1,7 @@
--- Remover chave estrangeira
 ALTER TABLE resposta DROP FOREIGN KEY FK_RESPOSTA_ON_TOPICO;
 
--- Modificar coluna para AUTO_INCREMENT
 ALTER TABLE topico MODIFY COLUMN id BIGINT AUTO_INCREMENT;
 
--- Recriar chave estrangeira
 ALTER TABLE resposta
 ADD CONSTRAINT FK_RESPOSTA_ON_TOPICO
 FOREIGN KEY (topico_id) REFERENCES topico (id)
