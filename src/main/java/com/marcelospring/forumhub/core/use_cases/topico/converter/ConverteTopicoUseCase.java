@@ -1,8 +1,6 @@
 package com.marcelospring.forumhub.core.use_cases.topico.converter;
 
 import com.marcelospring.forumhub.core.domain.entities.Topico;
-import com.marcelospring.forumhub.core.domain.repositories.CursoRepository;
-import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
 import com.marcelospring.forumhub.core.use_cases.curso.ConverteCursoUseCase;
 import com.marcelospring.forumhub.core.use_cases.curso.RetornarCursoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.usuario.ConverteUsuarioUseCase;
@@ -17,18 +15,14 @@ public class ConverteTopicoUseCase {
 
 
     private final TopicoMapper topicoMapper;
-    private final UsuarioRepository usuarioRepository;
-    private final CursoRepository cursoRepository;
     private final RetornarCursoByIdUseCase retornarCursoByIdUseCase;
     private final ConverteCursoUseCase converteCursoUseCase;
     private final ConverteUsuarioUseCase converteUsuarioUseCase;
     private final RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase;
 
     @Autowired
-    public ConverteTopicoUseCase(TopicoMapper topicoMapper, UsuarioRepository usuarioRepository, CursoRepository cursoRepository, RetornarCursoByIdUseCase retornarCursoByIdUseCase, ConverteCursoUseCase converteCursoUseCase, ConverteUsuarioUseCase converteUsuarioUseCase, RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase) {
+    public ConverteTopicoUseCase(TopicoMapper topicoMapper, RetornarCursoByIdUseCase retornarCursoByIdUseCase, ConverteCursoUseCase converteCursoUseCase, ConverteUsuarioUseCase converteUsuarioUseCase, RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase) {
         this.topicoMapper = topicoMapper;
-        this.usuarioRepository = usuarioRepository;
-        this.cursoRepository = cursoRepository;
         this.retornarCursoByIdUseCase = retornarCursoByIdUseCase;
         this.converteCursoUseCase = converteCursoUseCase;
         this.converteUsuarioUseCase = converteUsuarioUseCase;

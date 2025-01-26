@@ -8,7 +8,6 @@ import com.marcelospring.forumhub.core.domain.entities.Topico;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-
 @Mapper(componentModel = "spring")
 public interface TopicoMapper {
     @Mapping(target = "autor", source = "autor", qualifiedByName = "mapLongToUsuario")

@@ -1,6 +1,5 @@
 package com.marcelospring.forumhub.core.domain.entities;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

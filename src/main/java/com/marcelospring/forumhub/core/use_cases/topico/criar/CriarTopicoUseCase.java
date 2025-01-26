@@ -1,4 +1,4 @@
-package com.marcelospring.forumhub.core.use_cases.topico;
+package com.marcelospring.forumhub.core.use_cases.topico.criar;
 
 import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
 import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingMessageException;

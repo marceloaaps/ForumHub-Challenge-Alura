@@ -40,9 +40,9 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String role = String.valueOf(this.role.getName());
+        String localRole = String.valueOf(this.role.getName());
 
-        return switch (role) {
+        return switch (localRole) {
             case "Admin" -> List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
             case "User" -> List.of(new SimpleGrantedAuthority("ROLE_USER"));
             case "Guest" -> List.of(new SimpleGrantedAuthority("ROLE_GUEST"));

@@ -1,6 +1,6 @@
 package com.marcelospring.forumhub.presentation.controllers;
 
-import com.marcelospring.forumhub.core.use_cases.topico.CriarTopicoUseCase;
+import com.marcelospring.forumhub.core.use_cases.topico.criar.CriarTopicoUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.deletar.DeletarTopicoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoDtoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoUseCase;
