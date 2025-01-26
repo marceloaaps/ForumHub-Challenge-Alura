@@ -3,6 +3,7 @@ package com.marcelospring.forumhub.core.use_cases.usuario;
 import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +29,9 @@ public class RetornarUsuarioByIdUseCase {
         System.out.println("Usuario em retornarUsuario: " + usuario);
         return converteUsuarioUseCase.converteUsuarioToDto(usuario);
 
+    }
 
+    public UserDetails retornaUsuarioByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
     }
 }
