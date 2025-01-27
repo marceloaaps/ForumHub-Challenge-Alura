@@ -36,7 +36,6 @@ public class TopicoController {
     @PostMapping
     public ResponseEntity<Void> criarTopico(@RequestBody @Valid TopicoDto topicoDto) {
 
-
         criarTopicoUseCase.criarTopico(topicoDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
 

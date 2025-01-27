@@ -25,7 +25,7 @@ public class DataLoaderConfig {
     private PasswordEncoder passwordEncoder;
 
 //    @Bean
-    CommandLineRunner initDatabase(PerfilRepository perfilRepository, UsuarioRepository usuarioRepository) {
+    CommandLineRunner initDatabase(PerfilRepository perfilRepository) {
         return args -> {
             inserePerfil("Admin");
             inserePerfil("Member");

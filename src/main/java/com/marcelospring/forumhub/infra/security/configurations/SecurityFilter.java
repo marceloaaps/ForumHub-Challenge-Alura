@@ -22,11 +22,9 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
     TokenService tokenService;
-    private final VerificaUsuarioByUseCase verificaUsuarioByUseCase;
     private final RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase;
 
     public SecurityFilter(VerificaUsuarioByUseCase verificaUsuarioByUseCase, RetornarUsuarioByIdUseCase retornarUsuarioByIdUseCase) {
-        this.verificaUsuarioByUseCase = verificaUsuarioByUseCase;
         this.retornarUsuarioByIdUseCase = retornarUsuarioByIdUseCase;
     }
 
