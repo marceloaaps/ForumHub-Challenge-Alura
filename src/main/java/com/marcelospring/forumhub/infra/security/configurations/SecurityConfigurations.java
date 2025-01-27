@@ -31,8 +31,8 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/registrar").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/busca-nomes/{nome}").hasRole("Admin")
-                        .requestMatchers(HttpMethod.POST, "/topicos").hasRole("Admin")
+                        .requestMatchers(HttpMethod.GET, "/busca-nomes/{nome}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/topicos").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)

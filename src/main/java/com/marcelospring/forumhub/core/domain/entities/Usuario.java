@@ -40,11 +40,11 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String localRole = String.valueOf(this.role.getName());
+        String localRole = String.valueOf(role.getName());
 
         return switch (localRole) {
             case "Admin" -> List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-            case "User" -> List.of(new SimpleGrantedAuthority("ROLE_USER"));
+            case "Member" -> List.of(new SimpleGrantedAuthority("ROLE_MEMBER"));
             case "Guest" -> List.of(new SimpleGrantedAuthority("ROLE_GUEST"));
             default -> throw new RuntimeException("Erro ao obter perfil");
         };
