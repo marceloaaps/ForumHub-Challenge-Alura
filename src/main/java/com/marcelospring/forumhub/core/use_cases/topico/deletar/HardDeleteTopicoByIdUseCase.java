@@ -5,11 +5,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DeletarTopicoByIdUseCase {
+@Deprecated
+public class HardDeleteTopicoByIdUseCase {
 
     private final TopicoRepository topicoRepository;
 
-    public DeletarTopicoByIdUseCase(TopicoRepository topicoRepository) {
+    public HardDeleteTopicoByIdUseCase(TopicoRepository topicoRepository) {
         this.topicoRepository = topicoRepository;
     }
 

@@ -116,4 +116,8 @@ public class Topico {
     public void setTitulo(String titulo) {
         this.titulo = titulo;
     }
+
+    public void setIs_deleted(boolean is_deleted) {
+        this.is_deleted = is_deleted;
+    }
 }

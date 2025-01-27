@@ -1,7 +1,7 @@
 package com.marcelospring.forumhub.presentation.controllers;
 
+import com.marcelospring.forumhub.core.use_cases.topico.deletar.SoftDeleteTopicoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.criar.CriarTopicoUseCase;
-import com.marcelospring.forumhub.core.use_cases.topico.deletar.DeletarTopicoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoDtoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoUseCase;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
@@ -19,18 +19,17 @@ public class TopicoController {
     private final CriarTopicoUseCase criarTopicoUseCase;
     private final RetornarTopicoUseCase retornarTopicoUseCase;
     private final RetornarTopicoDtoByIdUseCase retornarTopicoDtoByIdUseCase;
-    private final DeletarTopicoByIdUseCase deletarTopicoByIdUseCase;
+    private final SoftDeleteTopicoByIdUseCase softDeleteTopicoByIdUseCase;
 
     public TopicoController(CriarTopicoUseCase criarTopicoUseCase,
                             RetornarTopicoUseCase retornarTopicoUseCase,
-                            RetornarTopicoDtoByIdUseCase retornarTopicoDtoByIdUseCase,
-                            DeletarTopicoByIdUseCase deletarTopicoByIdUseCase
-    ) {
+                            RetornarTopicoDtoByIdUseCase retornarTopicoDtoByIdUseCase, SoftDeleteTopicoByIdUseCase softDeleteTopicoByIdUseCase
+                            ) {
 
         this.criarTopicoUseCase = criarTopicoUseCase;
         this.retornarTopicoUseCase = retornarTopicoUseCase;
         this.retornarTopicoDtoByIdUseCase = retornarTopicoDtoByIdUseCase;
-        this.deletarTopicoByIdUseCase = deletarTopicoByIdUseCase;
+        this.softDeleteTopicoByIdUseCase = softDeleteTopicoByIdUseCase;
     }
 
     @PostMapping
@@ -71,6 +70,9 @@ public class TopicoController {
     //Alterar para soft delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarTopico(@PathVariable("id") Long id) {
-        return deletarTopicoByIdUseCase.deletar(id);
+
+        softDeleteTopicoByIdUseCase.deletarTopico(id);
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
