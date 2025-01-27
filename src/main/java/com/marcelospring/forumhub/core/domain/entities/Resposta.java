@@ -26,5 +26,4 @@ public class Resposta {
     @ManyToOne
     @JoinColumn(name = "autor_id")
     private Usuario autor;
-    private String solucao;
 }
