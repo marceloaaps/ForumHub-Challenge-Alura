@@ -4,16 +4,18 @@ import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByNomeUs
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(name = "/usuarios")
 public class UsuarioController {
 
     @Autowired
-    RetornarUsuarioByNomeUseCase retornarUsuarioByNomeUseCase;
+    private final RetornarUsuarioByNomeUseCase retornarUsuarioByNomeUseCase;
+
+    public UsuarioController(RetornarUsuarioByNomeUseCase retornarUsuarioByNomeUseCase) {
+        this.retornarUsuarioByNomeUseCase = retornarUsuarioByNomeUseCase;
+    }
 
     @GetMapping(name = "/busca-nomes/{nome}")
     public ResponseEntity<UsuarioDto> getUsuarioByName(String nome) {
@@ -21,4 +23,12 @@ public class UsuarioController {
 
         return ResponseEntity.ok(usuario);
     }
+
+    @DeleteMapping(name = "/deletar/{id}")
+    public ResponseEntity<Void> deletarUsuario(@PathVariable("id") Long id) {
+
+
+        return null;
+    }
+
 }
