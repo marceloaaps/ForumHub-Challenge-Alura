@@ -4,12 +4,10 @@ import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
 import com.marcelospring.forumhub.core.use_cases.topico.converter.ConverteTopicoUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoByIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SoftDeleteTopicoByIdUseCase {
-
 
     private final RetornarTopicoByIdUseCase retornarTopicoByIdUseCase;
     private final TopicoRepository topicoRepository;
@@ -35,5 +33,4 @@ public class SoftDeleteTopicoByIdUseCase {
 
         return converteTopicoUseCase.converteTopicoParaDto(topico);
     }
-
 }

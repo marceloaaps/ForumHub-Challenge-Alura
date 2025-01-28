@@ -18,7 +18,6 @@ public class RetornarTopicoDtoByIdUseCase {
         if (topico == null) {
             return null;
         }
-
         return new TopicoDto(
                 topico.getTitulo(),
                 topico.getMensagem(),
