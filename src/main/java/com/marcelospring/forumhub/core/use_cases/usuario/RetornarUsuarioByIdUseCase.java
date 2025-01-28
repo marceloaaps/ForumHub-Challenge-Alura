@@ -17,7 +17,7 @@ public class RetornarUsuarioByIdUseCase {
         this.converteUsuarioUseCase = converteUsuarioUseCase;
     }
 
-    public UsuarioDto retornarUsuario(Long id) {
+    public UsuarioDto retornarUsuarioDto(Long id) {
 
         if (usuarioRepository.findById(id).isEmpty()) {
             throw new NullPointerException("Não existe usuario com id " + id);
@@ -34,4 +34,15 @@ public class RetornarUsuarioByIdUseCase {
     public UserDetails retornaUsuarioByEmail(String email) {
         return usuarioRepository.findByEmail(email);
     }
+
+    public Usuario retornarUsuario(Long id) {
+
+        if (usuarioRepository.findById(id).isEmpty()) {
+            throw new NullPointerException("Não existe usuario com id " + id);
+        }
+
+        return usuarioRepository.findUsuarioById(id);
+
+    }
+
 }

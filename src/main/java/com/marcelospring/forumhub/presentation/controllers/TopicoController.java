@@ -67,7 +67,6 @@ public class TopicoController {
         return ResponseEntity.ok(topicoDto);
     }
 
-    //Alterar para soft delete
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarTopico(@PathVariable("id") Long id) {
 
@@ -77,7 +76,7 @@ public class TopicoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
+        return ResponseEntity.noContent().build();
 
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

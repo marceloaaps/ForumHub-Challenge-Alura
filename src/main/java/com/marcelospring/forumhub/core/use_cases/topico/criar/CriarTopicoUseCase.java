@@ -33,8 +33,8 @@ public class CriarTopicoUseCase {
     //Cabe uma refatoração para abstração aqui.
     public void criarTopico(TopicoDto topicoDto) {
 
-        UsuarioDto autor = retornarUsuarioByIdUseCase.retornarUsuario(topicoDto.autor());
-        System.out.println("\nAutor Começo do criarTopico: " + autor); // AQUI JA CHEGA NULL
+        UsuarioDto autor = retornarUsuarioByIdUseCase.retornarUsuarioDto(topicoDto.autor());
+        System.out.println("\nAutor Começo do criarTopico: " + autor);
 
         if (autor == null) {
             throw new RuntimeException("Usuário inexistente");
