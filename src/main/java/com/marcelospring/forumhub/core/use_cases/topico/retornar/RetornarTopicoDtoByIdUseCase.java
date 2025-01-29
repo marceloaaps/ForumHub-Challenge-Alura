@@ -1,7 +1,9 @@
 package com.marcelospring.forumhub.core.use_cases.topico.retornar;
 
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @Service
 public class RetornarTopicoDtoByIdUseCase {
