@@ -1,7 +1,7 @@
 package com.marcelospring.forumhub.core.use_cases.usuario;
 
 import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
-import com.marcelospring.forumhub.infra.exceptions.ExistingEmailException;
+import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingEmailException;
 import org.springframework.stereotype.Service;
 
 @Service

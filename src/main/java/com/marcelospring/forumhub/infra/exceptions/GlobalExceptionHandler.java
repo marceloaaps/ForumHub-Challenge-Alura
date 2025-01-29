@@ -1,7 +1,9 @@
 package com.marcelospring.forumhub.infra.exceptions;
 
+import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingEmailException;
 import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingMessageException;
 import com.marcelospring.forumhub.core.use_cases.exceptions.ExistingTitleException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -35,5 +37,15 @@ public class GlobalExceptionHandler {
         response.put("details", ex.getMessage());
         return ResponseEntity.badRequest().body(response);
     }
+
+    @ExceptionHandler(NonAuthorizedEmailExceotion.class)
+    public ResponseEntity<Map<String, String>> handleNullEmailException(NonAuthorizedEmailExceotion ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", "Credencial de email equivocada");
+        response.put("Email: ", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+
 
 }
