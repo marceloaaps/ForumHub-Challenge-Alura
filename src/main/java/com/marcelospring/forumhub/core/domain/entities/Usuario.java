@@ -25,7 +25,7 @@ public class Usuario implements UserDetails {
     private String nome;
     private String email;
     private String senha;
-    private boolean isActive;
+    private boolean isDeleted;
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(

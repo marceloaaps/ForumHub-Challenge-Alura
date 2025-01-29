@@ -23,7 +23,7 @@ public class SoftDeleteUsuarioByIdUseCase {
             throw new NullPointerException("Usuário de id " + id + "não encontrado");
         }
 
-        usuario.setActive(false);
+        usuario.setDeleted(false);
         usuarioRepository.save(usuario);
 
         return usuario;

@@ -16,7 +16,7 @@ public class VerificaUsuarioByUseCase {
     public void usuarioExiste(String email) {
         if (usuarioRepository.findDtoUsuarioByEmail(email) != null) {
             try {
-                throw new ExistingEmailException("O seguinte email ja existe na nossa database: " + email);
+                throw new ExistingEmailException("Email ja cadastrado");
             } catch (ExistingEmailException e) {
                 throw new RuntimeException(e);
             }

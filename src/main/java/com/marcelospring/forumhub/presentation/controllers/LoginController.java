@@ -6,6 +6,9 @@ import com.marcelospring.forumhub.infra.security.service.TokenService;
 import com.marcelospring.forumhub.presentation.dtos.AuthDto;
 import com.marcelospring.forumhub.presentation.dtos.LoginDto;
 import com.marcelospring.forumhub.presentation.dtos.LoginResponseDto;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,6 +39,11 @@ public class LoginController {
         return ResponseEntity.ok(new LoginResponseDto(token));
     }
 
+    @Operation(description = "Registra o usuário.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201",  description = "Retorna código 201 sem body."),
+            @ApiResponse(responseCode = "400",  description = "Retorna código 400 Bad Request.")}
+    )
     @PostMapping("/registrar")
     public ResponseEntity<Void> register(@RequestBody @Valid AuthDto authDto){
         criarUsuario.criarUsuario(authDto);
