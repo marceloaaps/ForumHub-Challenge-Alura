@@ -35,7 +35,8 @@ public class Topico {
     @OneToMany(mappedBy = "topico")
     private List<Resposta> resposta;
 
-    private boolean is_deleted;
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
 
     public Topico(Curso curso, Usuario autor, LocalDateTime dataCriacao, String mensagem, List<Resposta> resposta, boolean status, String titulo) {
         this.curso = curso;
@@ -45,7 +46,7 @@ public class Topico {
         this.resposta = resposta;
         this.status = status;
         this.titulo = titulo;
-        this.is_deleted = false;
+        this.isDeleted= false;
     }
 
     // Por algum MISTERIO DIVINO o lombok não está pegando esse setter
@@ -117,7 +118,7 @@ public class Topico {
         this.titulo = titulo;
     }
 
-    public void setIs_deleted(boolean is_deleted) {
-        this.is_deleted = is_deleted;
+    public void setisDeleted(boolean isDeleted) {
+        this.isDeleted = isDeleted;
     }
 }

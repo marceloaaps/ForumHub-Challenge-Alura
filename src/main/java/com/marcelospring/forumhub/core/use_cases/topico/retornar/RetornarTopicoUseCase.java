@@ -1,6 +1,5 @@
 package com.marcelospring.forumhub.core.use_cases.topico.retornar;
 
-import com.marcelospring.forumhub.core.domain.entities.Topico;
 import com.marcelospring.forumhub.core.domain.repositories.TopicoRepository;
 import com.marcelospring.forumhub.infra.mappers.TopicoMapper;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
@@ -9,8 +8,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class RetornarTopicoUseCase {
@@ -25,13 +22,12 @@ public class RetornarTopicoUseCase {
 
     public Page<TopicoDto> findAll(Pageable pageable) {
 
-
-        List<Topico> topicos = topicoRepository.findAll(pageable).getContent();
-
         if (pageable.getSort().isUnsorted()) {
-            pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("id").ascending());
+            pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("dataCriacao").descending());
         }
-        return topicoRepository.findAll(pageable).map(topicoMapper::toDto);
+
+        return topicoRepository.findByIsDeletedFalse(pageable).map(topicoMapper::toDto);
     }
+
 }
 

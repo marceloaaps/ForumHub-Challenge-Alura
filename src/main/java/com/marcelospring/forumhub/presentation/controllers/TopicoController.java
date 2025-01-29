@@ -16,7 +16,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping(value = "/topicos")
@@ -58,14 +57,14 @@ public class TopicoController {
             @ApiResponse(responseCode = "200", description = "Lista todos os tópicos disponíveis.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = TopicoDto.class))),
-            @ApiResponse(responseCode = "404", description = "Nenhum tópico encontrado.")
+            @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.")
     })
     @GetMapping
     public ResponseEntity<Page<TopicoDto>> getTopicos(Pageable pageable) {
         Page<TopicoDto> page = retornarTopicoUseCase.findAll(pageable);
 
         if (page.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum tópico encontrado");
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
 
         return ResponseEntity.ok(page);

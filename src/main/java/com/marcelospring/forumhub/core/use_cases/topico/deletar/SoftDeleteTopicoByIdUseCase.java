@@ -27,7 +27,7 @@ public class SoftDeleteTopicoByIdUseCase {
 
         var topico = retornarTopicoByIdUseCase.retornarTopicoById(id);
 
-        topico.setIs_deleted(true);
+        topico.setisDeleted(true);
 
         topicoRepository.save(topico);
 

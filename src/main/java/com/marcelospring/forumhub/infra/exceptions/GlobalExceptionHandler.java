@@ -35,4 +35,5 @@ public class GlobalExceptionHandler {
         response.put("details", ex.getMessage());
         return ResponseEntity.badRequest().body(response);
     }
+
 }
