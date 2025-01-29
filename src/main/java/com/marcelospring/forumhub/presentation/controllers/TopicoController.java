@@ -4,6 +4,7 @@ import com.marcelospring.forumhub.core.use_cases.topico.deletar.SoftDeleteTopico
 import com.marcelospring.forumhub.core.use_cases.topico.criar.CriarTopicoUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoDtoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoUseCase;
+import com.marcelospring.forumhub.infra.exceptions.ResourceNotFoundException;
 import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -72,15 +73,19 @@ public class TopicoController {
 
     @Operation(description = "Retorna todos os tópicos.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200",  description = "Retorna código 200 com o corpo atualizado com todos os tópicos."),
-            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found.")}
+            @ApiResponse(responseCode = "200",  description = "Retorna código 200 com o corpo atualizado do tópico."),
+            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found, caso não encontrado topico.")}
     )
     @GetMapping("/{id}")
     public ResponseEntity<TopicoDto> getTopico(@PathVariable("id") Long id) {
 
         var topico =  retornarTopicoDtoByIdUseCase.retornarTopicoDtoById(id);
 
-        return topico != null ? ResponseEntity.ok(topico) : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        if (topico == null) {
+            throw new ResourceNotFoundException("Topico de id " + id + "não encontrado.");
+        }
+
+        return ResponseEntity.ok(topico);
     }
 
     @Operation(description = "Atualiza o tópico.")
@@ -96,7 +101,7 @@ public class TopicoController {
         var topicoAntigo = retornarTopicoDtoByIdUseCase.retornarTopicoDtoById(id);
 
         if (topicoAntigo == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            throw new ResourceNotFoundException(topicoDto.titulo());
         }
 
         criarTopicoUseCase.criarTopico(topicoAntigo);
@@ -107,7 +112,7 @@ public class TopicoController {
     @Operation(description = "Atualiza o tópico.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204",  description = "Retorna código 204 no content."),
-            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found.")}
+            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found caso topico não encontrado.")}
     )
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarTopico(@PathVariable("id") Long id) {
@@ -115,7 +120,7 @@ public class TopicoController {
         var topicoDto = softDeleteTopicoByIdUseCase.deletarTopico(id);
 
         if (topicoDto == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            throw new ResourceNotFoundException("Topico de id" + id +  "não encontrado.");
         }
 
         return ResponseEntity.noContent().build();

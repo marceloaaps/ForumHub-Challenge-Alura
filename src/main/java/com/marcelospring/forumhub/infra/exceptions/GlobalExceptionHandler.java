@@ -46,6 +46,28 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Map<String, String>> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("Erro, recurso não encontrado: ", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    @ExceptionHandler(InvalidCredentialException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidCredentialException(InvalidCredentialException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", "Credencial inválida: ");
+        response.put("details", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
+
+    @ExceptionHandler(CantProcessException.class)
+    public ResponseEntity<Map<String, String>> handleCantProcessException(CantProcessException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", "Erro ao processar credencial");
+        response.put("details: ", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
 
 
 }
