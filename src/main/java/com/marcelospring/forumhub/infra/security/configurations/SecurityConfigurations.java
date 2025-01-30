@@ -52,8 +52,8 @@ public class SecurityConfigurations {
     public AuthenticationEntryPoint customAuthenticationEntryPoint() {
         return (request, response, authException) -> {
             response.setContentType("application/json");
-            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // Retorna 401 Unauthorized
-            response.getWriter().write("{\"error\": \"Credenciais inválidas!\"}");
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("{\"error\": \"Erro ao validar request!\"}");
         };
     }
 
@@ -67,4 +67,3 @@ public class SecurityConfigurations {
         return new BCryptPasswordEncoder();
     }
 }
-

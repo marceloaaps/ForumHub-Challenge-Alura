@@ -79,6 +79,8 @@ public class TopicoController {
     @GetMapping("/{id}")
     public ResponseEntity<TopicoDto> getTopico(@PathVariable("id") Long id) {
 
+        validaRequest(id);
+
         var topico =  retornarTopicoDtoByIdUseCase.retornarTopicoDtoById(id);
 
         if (topico == null) {
@@ -97,6 +99,8 @@ public class TopicoController {
     public ResponseEntity<TopicoDto> atualizarTopico(
             @PathVariable("id") Long id,
             @RequestBody @Valid TopicoDto topicoDto) {
+
+        validaRequest(id);
 
         var topicoAntigo = retornarTopicoDtoByIdUseCase.retornarTopicoDtoById(id);
 
@@ -117,6 +121,8 @@ public class TopicoController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarTopico(@PathVariable("id") Long id) {
 
+        validaRequest(id);
+
         var topicoDto = softDeleteTopicoByIdUseCase.deletarTopico(id);
 
         if (topicoDto == null) {
@@ -124,5 +130,11 @@ public class TopicoController {
         }
 
         return ResponseEntity.noContent().build();
+    }
+
+    private void validaRequest(Long id){
+        if (id == null){
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 }
