@@ -2,6 +2,7 @@ package com.marcelospring.forumhub.core.use_cases.usuario;
 
 import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
+import com.marcelospring.forumhub.infra.exceptions.ResourceNotFoundException;
 import com.marcelospring.forumhub.presentation.dtos.UsuarioDto;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,7 @@ public class RetornarUsuarioByIdUseCase {
     public UsuarioDto retornarUsuarioDto(Long id) {
 
         if (usuarioRepository.findById(id).isEmpty()) {
-            throw new NullPointerException("Não existe usuario com id " + id);
+            throw new ResourceNotFoundException("Não existe usuario com id " + id);
         }
 
         Usuario usuario = usuarioRepository.findUsuarioById(id);

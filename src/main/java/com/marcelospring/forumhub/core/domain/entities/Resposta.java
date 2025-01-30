@@ -26,4 +26,11 @@ public class Resposta {
     @ManyToOne
     @JoinColumn(name = "autor_id")
     private Usuario autor;
+
+    public Resposta(String mensagem, LocalDateTime dataCriacao, Topico topico, Usuario autor) {
+        this.mensagem = mensagem;
+        this.dataCriacao = dataCriacao;
+        this.topico = topico;
+        this.autor = autor;
+    }
 }
