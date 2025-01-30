@@ -42,7 +42,7 @@ public class TopicoController {
     @Operation(description = "Cria o tópico.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201",  description = "Retorna código 201 sem body."),
-            @ApiResponse(responseCode = "400",  description = "Retorna código 400 Bad Request.")}
+            @ApiResponse(responseCode = "400",  description = "Retorna código 400 Bad Request.", content = @Content())}
     )
     @PostMapping
     public ResponseEntity<Void> criarTopico(@RequestBody @Valid TopicoDto topicoDto) {
@@ -58,7 +58,7 @@ public class TopicoController {
             @ApiResponse(responseCode = "200", description = "Lista todos os tópicos disponíveis.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = TopicoDto.class))),
-            @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.")
+            @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.", content = @Content())
     })
     @GetMapping
     public ResponseEntity<Page<TopicoDto>> getTopicos(Pageable pageable) {
@@ -74,7 +74,8 @@ public class TopicoController {
     @Operation(description = "Retorna todos os tópicos.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",  description = "Retorna código 200 com o corpo atualizado do tópico."),
-            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found, caso não encontrado topico.")}
+            @ApiResponse(responseCode = "404",  description =
+                    "Retorna código 404 Resource Not Found, caso não encontrado topico." ,content = @Content())}
     )
     @GetMapping("/{id}")
     public ResponseEntity<TopicoDto> getTopico(@PathVariable("id") Long id) {

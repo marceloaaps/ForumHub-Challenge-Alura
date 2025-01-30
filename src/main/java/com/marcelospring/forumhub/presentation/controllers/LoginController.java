@@ -9,6 +9,7 @@ import com.marcelospring.forumhub.presentation.dtos.AuthDto;
 import com.marcelospring.forumhub.presentation.dtos.LoginDto;
 import com.marcelospring.forumhub.presentation.dtos.LoginResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
@@ -34,7 +35,7 @@ public class LoginController {
     @Operation(description = "Registra o usuário.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Retorna código 200 com o body do token."),
-            @ApiResponse(responseCode = "401", description = "Retorna código 401 Unathorized.")}
+            @ApiResponse(responseCode = "401", description = "Retorna código 401 Unathorized.", content = @Content())}
     )
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody @Valid LoginDto loginDto) {
