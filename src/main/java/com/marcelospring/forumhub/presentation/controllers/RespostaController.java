@@ -1,15 +1,16 @@
 package com.marcelospring.forumhub.presentation.controllers;
 
-import com.marcelospring.forumhub.core.domain.entities.Resposta;
 import com.marcelospring.forumhub.core.use_cases.resposta.CriarRespostaUseCase;
 import com.marcelospring.forumhub.presentation.dtos.EntradaRespostaDto;
-import com.marcelospring.forumhub.presentation.dtos.RespostaDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/respostas")

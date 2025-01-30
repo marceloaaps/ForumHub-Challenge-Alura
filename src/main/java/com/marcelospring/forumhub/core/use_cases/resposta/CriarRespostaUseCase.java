@@ -4,7 +4,9 @@ import com.marcelospring.forumhub.core.domain.entities.Resposta;
 import com.marcelospring.forumhub.core.domain.repositories.RespostaRepository;
 import com.marcelospring.forumhub.core.use_cases.topico.retornar.RetornarTopicoByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.usuario.RetornarUsuarioByIdUseCase;
+import com.marcelospring.forumhub.infra.exceptions.ResourceNotFoundException;
 import com.marcelospring.forumhub.presentation.dtos.EntradaRespostaDto;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,14 +24,18 @@ public class CriarRespostaUseCase {
         this.retornarUsuarioByIdUseCase = retornarUsuarioByIdUseCase;
     }
 
-    public void adicionarResposta(EntradaRespostaDto entradaRespostaDto) {
+    public void adicionarResposta(@NotNull EntradaRespostaDto entradaRespostaDto) {
 
         var topico = retornarTopicoByIdUseCase.retornarTopicoById(entradaRespostaDto.topicoId());
         var autor =  retornarUsuarioByIdUseCase.retornarUsuario(entradaRespostaDto.autorId());
 
+        if (topico.isDeleted() || autor.isDeleted()) {
+            throw new ResourceNotFoundException("Tópico ou autor inexistente");
+        }
+
         var horaCriacao = LocalDateTime.now();
 
-        var resposta = new Resposta(entradaRespostaDto.message(), horaCriacao, topico, autor);
+        var resposta = new Resposta(entradaRespostaDto.mensagem(), horaCriacao, topico, autor);
 
         respostaRepository.save(resposta);
     }
