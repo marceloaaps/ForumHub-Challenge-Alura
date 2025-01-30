@@ -31,6 +31,11 @@ public class LoginController {
     @Autowired
     private TokenService tokenService;
 
+    @Operation(description = "Registra o usuário.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorna código 200 com o body do token."),
+            @ApiResponse(responseCode = "401", description = "Retorna código 401 Unathorized.")}
+    )
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> login(@RequestBody @Valid LoginDto loginDto) {
         try {
