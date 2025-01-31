@@ -2,8 +2,10 @@ package com.marcelospring.forumhub.presentation.controllers;
 
 import com.marcelospring.forumhub.core.use_cases.resposta.CriarRespostaUseCase;
 import com.marcelospring.forumhub.core.use_cases.resposta.RetornaRespostaByTopicoIdUseCase;
+import com.marcelospring.forumhub.core.use_cases.resposta.SoftDeleteRespostaByIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.EntradaRespostaDto;
 import com.marcelospring.forumhub.presentation.dtos.RespostaReturnDto;
+import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -22,10 +24,12 @@ public class RespostaController {
 
     private final CriarRespostaUseCase criarRespostaUseCase;
     private final RetornaRespostaByTopicoIdUseCase retornarRespostaByTopicoIdUseCase;
+    private final SoftDeleteRespostaByIdUseCase softDeleteRespostaByIdUseCase;
 
-    public RespostaController(CriarRespostaUseCase criarRespostaUseCase, RetornaRespostaByTopicoIdUseCase retornarRespostaByTopicoIdUseCase) {
+    public RespostaController(CriarRespostaUseCase criarRespostaUseCase, RetornaRespostaByTopicoIdUseCase retornarRespostaByTopicoIdUseCase, SoftDeleteRespostaByIdUseCase softDeleteRespostaByIdUseCase) {
         this.criarRespostaUseCase = criarRespostaUseCase;
         this.retornarRespostaByTopicoIdUseCase = retornarRespostaByTopicoIdUseCase;
+        this.softDeleteRespostaByIdUseCase = softDeleteRespostaByIdUseCase;
     }
 
 
@@ -52,11 +56,25 @@ public class RespostaController {
                             schema = @Schema(implementation = RespostaReturnDto.class))),
             @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.", content = @Content())
     })
-    @GetMapping("/procura-respostas/{id}")
+    @GetMapping(value = "/procura-respostas/{id}")
     public ResponseEntity<List<RespostaReturnDto>> getRespostaByTopicoId(@PathVariable("id") Long id) {
 
         List<RespostaReturnDto> respostaList = retornarRespostaByTopicoIdUseCase.retornarRespostaById(id);
 
         return ResponseEntity.ok(respostaList);
+    }
+
+
+    @Operation(description = "Deleta a resposta. ID a se passar é id a ser deletado.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204",  description = "Retorna código 204 no content."),
+            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found caso resposta não encontrada.")}
+    )
+    @DeleteMapping(value = "/deletar/{id}")
+    public ResponseEntity<Void> deletarResposta(@PathVariable("id") Long id) {
+
+        softDeleteRespostaByIdUseCase.deletarRespostaById(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

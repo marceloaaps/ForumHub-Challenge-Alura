@@ -114,7 +114,7 @@ public class TopicoController {
         return ResponseEntity.ok(topicoDto);
     }
 
-    @Operation(description = "Atualiza o tópico.")
+    @Operation(description = "Deleta o tópico.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204",  description = "Retorna código 204 no content."),
             @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found caso topico não encontrado.")}

@@ -9,6 +9,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
-public record RespostaDto(@NotBlank String mensagem, @NotNull Topico topico,
-                          @NotNull Usuario autor, @NotNull LocalDateTime dataCriacao) implements Serializable {
+public record RespostaDto(@NotBlank String mensagem, @NotNull Topico topico,  @NotNull Usuario autor, @NotNull LocalDateTime dataCriacao,
+                          boolean isDeleted) implements Serializable {
 }

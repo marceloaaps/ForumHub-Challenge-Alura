@@ -38,6 +38,7 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/registrar").permitAll()
                         .requestMatchers(HttpMethod.POST, "/respostas/procura-respostas/{id}").hasAnyRole(ADMIN, MEMBER)
+                        .requestMatchers(HttpMethod.POST, "/respostas/deletar/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.POST, "/respostas/adicionar-resposta").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.GET, "/usuarios/busca-nomes/{nome}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.DELETE, "/usuarios/deletar/{id}").hasRole(ADMIN)
