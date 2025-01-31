@@ -26,9 +26,14 @@ public class RetornaRespostaByTopicoIdUseCase {
 
         List<Resposta> respostaList = topico.getResposta();
 
+        respostaList.forEach(resposta -> {
+            if (resposta.isDeleted()) {
+                respostaList.remove(resposta);
+            }
+        });
+
         respostaList.stream().map(resposta -> converterRespostaUseCase.converterResposta(resposta)).toList();
 
         return respostaList.stream().map(resposta -> converterRespostaUseCase.converterRespostaReturn(resposta)).toList();
     }
-
 }

@@ -4,7 +4,6 @@ import com.marcelospring.forumhub.core.domain.entities.Topico;
 import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.cglib.core.Local;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
