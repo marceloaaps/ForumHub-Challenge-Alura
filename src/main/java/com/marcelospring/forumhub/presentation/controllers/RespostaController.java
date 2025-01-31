@@ -1,10 +1,8 @@
 package com.marcelospring.forumhub.presentation.controllers;
 
-import com.marcelospring.forumhub.core.domain.entities.Resposta;
 import com.marcelospring.forumhub.core.use_cases.resposta.CriarRespostaUseCase;
 import com.marcelospring.forumhub.core.use_cases.resposta.RetornaRespostaByTopicoIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.EntradaRespostaDto;
-import com.marcelospring.forumhub.presentation.dtos.RespostaDto;
 import com.marcelospring.forumhub.presentation.dtos.RespostaReturnDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,13 +10,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
