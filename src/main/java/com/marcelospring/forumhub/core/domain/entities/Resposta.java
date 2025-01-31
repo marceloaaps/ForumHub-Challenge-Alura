@@ -31,10 +31,14 @@ public class Resposta {
     @JoinColumn(name = "autor_id")
     private Usuario autor;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
     public Resposta(String mensagem, LocalDateTime dataCriacao, Topico topico, Usuario autor) {
         this.mensagem = mensagem;
         this.dataCriacao = dataCriacao;
         this.topico = topico;
         this.autor = autor;
+        this.isDeleted = false;
     }
 }
