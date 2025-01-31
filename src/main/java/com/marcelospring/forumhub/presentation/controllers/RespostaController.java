@@ -5,6 +5,7 @@ import com.marcelospring.forumhub.core.use_cases.resposta.CriarRespostaUseCase;
 import com.marcelospring.forumhub.core.use_cases.resposta.RetornaRespostaByTopicoIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.EntradaRespostaDto;
 import com.marcelospring.forumhub.presentation.dtos.RespostaDto;
+import com.marcelospring.forumhub.presentation.dtos.RespostaReturnDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -33,13 +34,14 @@ public class RespostaController {
         this.retornarRespostaByTopicoIdUseCase = retornarRespostaByTopicoIdUseCase;
     }
 
+
     @Operation(description = "Cria uma resposta.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204",  description = "Retorna código 204 no content."),
             @ApiResponse(responseCode = "404",
                     description = "Retorna código 404 Resource Not Found caso topico ou usuário não encontrados.")}
     )
-    @PostMapping(value = "/adicionar-resposta")
+    @PostMapping(value = "/adicionar-respostas")
     public ResponseEntity<Void> adicionarResposta(@RequestBody @Valid EntradaRespostaDto entradaRespostaDto) {
 
         criarRespostaUseCase.adicionarResposta(entradaRespostaDto);
@@ -49,19 +51,18 @@ public class RespostaController {
     }
 
 
-    @Operation(description = "Retorna todos os tópicos de um certo post.")
+    @Operation(description = "ID necessário é ID do Tópico. Retorna todas respostas de um certo post.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Lista todos os tópicos disponíveis.",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = RespostaDto.class))),
+                            schema = @Schema(implementation = RespostaReturnDto.class))),
             @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.", content = @Content())
     })
     @GetMapping("/procura-respostas/{id}")
-    public ResponseEntity<Resposta> getTopicos(@PathVariable("id") Long id) {
+    public ResponseEntity<List<RespostaReturnDto>> getRespostaByTopicoId(@PathVariable("id") Long id) {
 
-        List<Resposta> respostaList = (List<Resposta>) retornarRespostaByTopicoIdUseCase.retornarRespostaById(id);
+        List<RespostaReturnDto> respostaList = retornarRespostaByTopicoIdUseCase.retornarRespostaById(id);
 
-        return ResponseEntity.ok((Resposta) respostaList);
+        return ResponseEntity.ok(respostaList);
     }
-
 }
