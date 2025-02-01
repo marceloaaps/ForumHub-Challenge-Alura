@@ -21,7 +21,7 @@ public class SoftDeleteTopicoByIdUseCase {
 
     public TopicoDto deletarTopico(Long id) {
 
-        if (!topicoRepository.existsById(id)) {
+        if (!topicoRepository.existsById(id) || topicoRepository.getById(id).isDeleted()) {
             return null;
         }
 

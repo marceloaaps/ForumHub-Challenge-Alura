@@ -19,7 +19,7 @@ public class SoftDeleteUsuarioByIdUseCase {
 
         var usuario = retornarUsuarioByIdUseCase.retornarUsuario(id);
 
-        if (usuario == null) {
+        if (usuario == null || usuario.isDeleted()) {
             throw new NullPointerException("Usuário de id " + id + "não encontrado");
         }
 

@@ -45,7 +45,6 @@ public class RespostaController {
         criarRespostaUseCase.adicionarResposta(entradaRespostaDto);
 
         return ResponseEntity.noContent().build();
-
     }
 
 

@@ -127,7 +127,7 @@ public class TopicoController {
         var topicoDto = softDeleteTopicoByIdUseCase.deletarTopico(id);
 
         if (topicoDto == null) {
-            throw new ResourceNotFoundException("Topico de id" + id +  "não encontrado.");
+            throw new ResourceNotFoundException("Topico de id" + id +  "não encontrado, ou está deletado" );
         }
 
         return ResponseEntity.noContent().build();

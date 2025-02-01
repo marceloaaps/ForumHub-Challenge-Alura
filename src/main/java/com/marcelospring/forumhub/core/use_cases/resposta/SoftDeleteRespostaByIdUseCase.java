@@ -18,7 +18,7 @@ public class SoftDeleteRespostaByIdUseCase {
 
         var resposta = respostaRepository.findById(id).orElse(null);
 
-        if (resposta == null) {
+        if (resposta == null || resposta.isDeleted()) {
             throw new ResourceNotFoundException("Id a deletar não encontrado");
         }
 
