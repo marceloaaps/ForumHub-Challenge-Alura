@@ -5,7 +5,6 @@ import com.marcelospring.forumhub.core.use_cases.resposta.RetornaRespostaByTopic
 import com.marcelospring.forumhub.core.use_cases.resposta.SoftDeleteRespostaByIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.EntradaRespostaDto;
 import com.marcelospring.forumhub.presentation.dtos.RespostaReturnDto;
-import com.marcelospring.forumhub.presentation.dtos.TopicoDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -76,4 +75,6 @@ public class RespostaController {
 
         return ResponseEntity.noContent().build();
     }
+
+
 }
