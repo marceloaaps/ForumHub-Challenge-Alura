@@ -5,12 +5,14 @@ import com.marcelospring.forumhub.core.use_cases.resposta.RetornaRespostaByTopic
 import com.marcelospring.forumhub.core.use_cases.resposta.SoftDeleteRespostaByIdUseCase;
 import com.marcelospring.forumhub.presentation.dtos.EntradaRespostaDto;
 import com.marcelospring.forumhub.presentation.dtos.RespostaReturnDto;
+import com.marcelospring.forumhub.presentation.dtos.UpdateRespostaDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -74,6 +76,22 @@ public class RespostaController {
         softDeleteRespostaByIdUseCase.deletarRespostaById(id);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/atualizar/{id}")
+    public ResponseEntity<Void> updateRespostaDto (@PathVariable Long id, @RequestBody @Valid UpdateRespostaDto updateRespostaDto) {
+
+        validaRequest(id);
+
+
+
+
+    }
+
+    private void validaRequest(Long id){
+        if (id == null){
+            ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
     }
 
 

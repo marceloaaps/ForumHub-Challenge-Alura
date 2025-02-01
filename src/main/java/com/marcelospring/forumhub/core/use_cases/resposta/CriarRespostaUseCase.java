@@ -29,11 +29,6 @@ public class CriarRespostaUseCase {
         var topico = retornarTopicoByIdUseCase.retornarTopicoById(entradaRespostaDto.topicoId());
         var autor =  retornarUsuarioByIdUseCase.retornarUsuario(entradaRespostaDto.autorId());
 
-        System.out.println(entradaRespostaDto.mensagem());
-        System.out.println(entradaRespostaDto.mensagem());
-        System.out.println(entradaRespostaDto.mensagem());
-        System.out.println(entradaRespostaDto.mensagem());
-
 
         if (topico.isDeleted() || autor.isDeleted()) {
             throw new ResourceNotFoundException("Tópico ou autor inexistente");
