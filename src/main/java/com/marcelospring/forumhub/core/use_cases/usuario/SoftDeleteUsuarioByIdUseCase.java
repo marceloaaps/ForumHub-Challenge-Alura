@@ -1,7 +1,7 @@
 package com.marcelospring.forumhub.core.use_cases.usuario;
 
-import com.marcelospring.forumhub.core.domain.entities.Usuario;
 import com.marcelospring.forumhub.core.domain.repositories.UsuarioRepository;
+import com.marcelospring.forumhub.infra.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,17 +15,16 @@ public class SoftDeleteUsuarioByIdUseCase {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public Usuario softDeleteUsuarioByIdUseCase(Long id) {
+    public void softDeleteUsuarioByIdUseCase(Long id) {
 
         var usuario = retornarUsuarioByIdUseCase.retornarUsuario(id);
 
         if (usuario == null || usuario.isDeleted()) {
-            throw new NullPointerException("Usuário de id " + id + "não encontrado");
+            throw new ResourceNotFoundException("Usuário de id " + id + "não encontrado");
         }
 
         usuario.setDeleted(false);
         usuarioRepository.save(usuario);
 
-        return usuario;
     }
 }

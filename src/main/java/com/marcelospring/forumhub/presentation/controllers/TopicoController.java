@@ -42,9 +42,10 @@ public class TopicoController {
     @Operation(description = "Cria o tópico.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201",  description = "Retorna código 201 sem body."),
-            @ApiResponse(responseCode = "400",  description = "Retorna código 400 Bad Request.", content = @Content())}
+            @ApiResponse(responseCode = "400",  description = "Retorna código 400 Bad Request.", content = @Content()),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")}
     )
-    @PostMapping
+    @PostMapping("/criar-topico")
     public ResponseEntity<Void> criarTopico(@RequestBody @Valid TopicoDto topicoDto) {
 
         criarTopicoUseCase.criarTopico(topicoDto);
@@ -58,7 +59,8 @@ public class TopicoController {
             @ApiResponse(responseCode = "200", description = "Lista todos os tópicos disponíveis.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = TopicoDto.class))),
-            @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.", content = @Content())
+            @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.", content = @Content()),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")
     })
     @GetMapping
     public ResponseEntity<Page<TopicoDto>> getTopicos(Pageable pageable) {
@@ -75,9 +77,10 @@ public class TopicoController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",  description = "Retorna código 200 com o corpo atualizado do tópico."),
             @ApiResponse(responseCode = "404",  description =
-                    "Retorna código 404 Resource Not Found, caso não encontrado topico." ,content = @Content())}
+                    "Retorna código 404 Resource Not Found, caso não encontrado topico." ,content = @Content()),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")}
     )
-    @GetMapping("/{id}")
+    @GetMapping("/buscar-topico/{id}")
     public ResponseEntity<TopicoDto> getTopico(@PathVariable("id") Long id) {
 
         validaRequest(id);
@@ -94,9 +97,10 @@ public class TopicoController {
     @Operation(description = "Atualiza o tópico.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",  description = "Retorna código 200 com o corpo atualizado."),
-            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found.")}
+            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found."),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")}
     )
-    @PutMapping("/{id}")
+    @PutMapping("/atualizar/{id}")
     public ResponseEntity<TopicoDto> atualizarTopico(
             @PathVariable("id") Long id,
             @RequestBody @Valid TopicoDto topicoDto) {

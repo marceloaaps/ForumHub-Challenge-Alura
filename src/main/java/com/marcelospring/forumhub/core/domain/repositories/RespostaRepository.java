@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RespostaRepository extends JpaRepository<Resposta, Long> {
-    boolean getRespostaById(Long id);
+    Resposta getRespostaById(Long id);
 }

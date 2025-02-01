@@ -38,7 +38,8 @@ public class RespostaController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204",  description = "Retorna código 204 no content."),
             @ApiResponse(responseCode = "404",
-                    description = "Retorna código 404 Resource Not Found caso topico ou usuário não encontrados.")}
+                    description = "Retorna código 404 Resource Not Found caso topico ou usuário não encontrados."),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")}
     )
     @PostMapping(value = "/adicionar-respostas")
     public ResponseEntity<Void> adicionarResposta(@RequestBody @Valid EntradaRespostaDto entradaRespostaDto) {
@@ -54,7 +55,10 @@ public class RespostaController {
             @ApiResponse(responseCode = "200", description = "Lista todos os tópicos disponíveis.",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = RespostaReturnDto.class))),
-            @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.", content = @Content())
+            @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.", content = @Content()
+            ),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")
+
     })
     @GetMapping(value = "/procura-respostas/{id}")
     public ResponseEntity<List<RespostaReturnDto>> getRespostaByTopicoId(@PathVariable("id") Long id) {
@@ -68,7 +72,8 @@ public class RespostaController {
     @Operation(description = "Deleta a resposta. ID a se passar é id a ser deletado.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204",  description = "Retorna código 204 no content."),
-            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found caso resposta não encontrada.")}
+            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found caso resposta não encontrada."),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")}
     )
     @DeleteMapping(value = "/deletar/{id}")
     public ResponseEntity<Void> deletarResposta(@PathVariable("id") Long id) {
@@ -78,14 +83,19 @@ public class RespostaController {
         return ResponseEntity.noContent().build();
     }
 
+
+    @Operation(description = "Atualiza a resposta.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204",  description = "Success: Retorna código 204 sem o corpo."),
+            @ApiResponse(responseCode = "404",  description = "Error: Retorna código 404 Resource Not Found."),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")}
+    )
     @PutMapping(value = "/atualizar/{id}")
     public ResponseEntity<Void> updateRespostaDto (@PathVariable Long id, @RequestBody @Valid UpdateRespostaDto updateRespostaDto) {
 
         validaRequest(id);
 
-
-
-
+        return ResponseEntity.noContent().build();
     }
 
     private void validaRequest(Long id){

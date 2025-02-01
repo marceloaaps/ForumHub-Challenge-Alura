@@ -34,15 +34,30 @@ public class SecurityConfigurations {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+
+                        //Doc e gerais.
                         .requestMatchers("/swagger-ui/**", "/swagger-resources/**", "/v3/api-docs/**", "api-docs/**", "/actuator/**").permitAll()
+
+                        // Autenticação e Login
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/registrar").permitAll()
+
+                        // Resposta
+                        .requestMatchers(HttpMethod.DELETE, "/respostas/deletar/{id}").hasAnyRole(ADMIN, MEMBER)
+                        .requestMatchers(HttpMethod.PUT, "/respostas/atualizar/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.GET, "/respostas/procura-respostas/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.POST, "/respostas/adicionar-resposta").hasAnyRole(ADMIN, MEMBER)
+
+                        // Usuario
                         .requestMatchers(HttpMethod.GET, "/usuarios/busca-nomes/{nome}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.DELETE, "/usuarios/deletar/{id}").hasRole(ADMIN)
-                        .requestMatchers(HttpMethod.POST, "/topicos").hasAnyRole(ADMIN, MEMBER)
+
+                        // Topico
+                        .requestMatchers(HttpMethod.PUT, "/topicos/atualizar/{id}").hasAnyRole(ADMIN, MEMBER)
+                        .requestMatchers(HttpMethod.POST, "/topicos/criar-topico").hasAnyRole(ADMIN, MEMBER)
+                        .requestMatchers(HttpMethod.GET, "/topicos/buscar-topico/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.DELETE, "/topicos/deletar/{id}").hasRole(ADMIN)
+
                         .anyRequest().authenticated())
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(exception -> exception

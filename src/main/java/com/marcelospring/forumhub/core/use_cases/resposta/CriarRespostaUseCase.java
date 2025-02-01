@@ -34,20 +34,9 @@ public class CriarRespostaUseCase {
             throw new ResourceNotFoundException("Tópico ou autor inexistente");
         }
 
-
-
         var horaCriacao = LocalDateTime.now();
 
-
-
         var resposta = new Resposta(entradaRespostaDto.mensagem(), horaCriacao, topico, autor);
-
-
-        System.out.println(resposta.getMensagem());
-        System.out.println(resposta.getMensagem());
-        System.out.println(resposta.getMensagem());
-        System.out.println(resposta.getMensagem());
-        System.out.println(resposta.getMensagem());
 
         respostaRepository.save(resposta);
     }
