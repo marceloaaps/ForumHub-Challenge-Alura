@@ -60,9 +60,9 @@ public class TopicoController {
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = TopicoDto.class))),
             @ApiResponse(responseCode = "204", description = "Retorna 204 sem body, se não tiver corpo.", content = @Content()),
-            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.", content = @Content())
     })
-    @GetMapping
+    @GetMapping("/buscar-todos")
     public ResponseEntity<Page<TopicoDto>> getTopicos(Pageable pageable) {
         Page<TopicoDto> page = retornarTopicoUseCase.findAll(pageable);
 
@@ -97,8 +97,8 @@ public class TopicoController {
     @Operation(description = "Atualiza o tópico.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",  description = "Retorna código 200 com o corpo atualizado."),
-            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found."),
-            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")}
+            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found.", content = @Content()),
+            @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized.", content = @Content())}
     )
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<TopicoDto> atualizarTopico(
@@ -120,8 +120,8 @@ public class TopicoController {
 
     @Operation(description = "Deleta o tópico.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204",  description = "Retorna código 204 no content."),
-            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found caso topico não encontrado.")}
+            @ApiResponse(responseCode = "204",  description = "Retorna código 204 no content.", content = @Content()),
+            @ApiResponse(responseCode = "404",  description = "Retorna código 404 Resource Not Found caso topico não encontrado.", content = @Content())}
     )
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarTopico(@PathVariable("id") Long id) {

@@ -42,19 +42,21 @@ public class SecurityConfigurations {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/registrar").permitAll()
 
+                        // Usuario
+                        .requestMatchers(HttpMethod.GET, "/usuarios/busca-nomes/{nome}").hasAnyRole(ADMIN, MEMBER)
+                        .requestMatchers(HttpMethod.DELETE, "/usuarios/deletar/{id}").hasRole(ADMIN)
+
+
                         // Resposta
                         .requestMatchers(HttpMethod.DELETE, "/respostas/deletar/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.PUT, "/respostas/atualizar/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.GET, "/respostas/procura-respostas/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.POST, "/respostas/adicionar-resposta").hasAnyRole(ADMIN, MEMBER)
 
-                        // Usuario
-                        .requestMatchers(HttpMethod.GET, "/usuarios/busca-nomes/{nome}").hasAnyRole(ADMIN, MEMBER)
-                        .requestMatchers(HttpMethod.DELETE, "/usuarios/deletar/{id}").hasRole(ADMIN)
-
                         // Topico
                         .requestMatchers(HttpMethod.PUT, "/topicos/atualizar/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.POST, "/topicos/criar-topico").hasAnyRole(ADMIN, MEMBER)
+                        .requestMatchers(HttpMethod.GET, "/topicos/buscar-todos").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.GET, "/topicos/buscar-topico/{id}").hasAnyRole(ADMIN, MEMBER)
                         .requestMatchers(HttpMethod.DELETE, "/topicos/deletar/{id}").hasRole(ADMIN)
 
