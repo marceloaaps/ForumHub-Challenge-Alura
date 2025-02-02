@@ -76,33 +76,64 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 ## Aprendizados <img width="26px"  src="https://img.icons8.com/?size=100&id=103808&format=png&color=000000">
 
-O que você aprendeu construindo esse projeto? Quais desafios você enfrentou e como você superou-os?
+Nesse projeto foi agregado a mim muito conhecimento em relação ao framework Spring, especialmente Spring Security do porquê utilizar de forma Stateless, quando utilizar, como utilizar e manipular para o funcionamento de forma correta. Aprendi também sobre a utilização das bibliotecas Lombok, MapStruct e também da utilização do Flyway para migração de banco de dados. 
 
 ## Documentação da API <img width="26px"  src="https://img.icons8.com/?size=100&id=AWNz4SeVAd8y&format=png&color=000000">
 
-#### Retorna todos os itens
+Documentação de cada endpoint, cada desejado, está mais detalhado na documentação Swagger na aplicação.
 
-```http
-  GET /api/items
-```
+- Topico
 
-| Parâmetro   | Tipo       | Descrição                           |
-| :---------- | :--------- | :---------------------------------- |
-| `api_key` | `string` | **Obrigatório**. A chave da sua API |
+    #### Retorna todos os tópicos
 
-#### Retorna um item
+    ```http
+  GET /topicos/buscar-todos
+    ```
 
-```http
-  GET /api/items/${id}
-```
+    | Parâmetro   | Tipo       | Descrição                           |
+    | :---------- | :--------- | :---------------------------------- |
+    | null | null | **Obrigatório**. Bearer Token de autenticação. |
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `id`      | `string` | **Obrigatório**. O ID do item que você quer |
+    #### Retorna um tópico
 
-#### add(num1, num2)
+    ```http
+    GET /topicos/buscar-topico/${id}
+    ```
 
-Recebe dois números e retorna a sua soma.
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `id`      | `Long` | **Obrigatório**. O ID do item que você quer |
+
+
+
+    #### Atualiza o tópico	
+    ```http
+    GET /topicos/buscar-topico/${id}
+    ```
+    
+
+    | Parâmetro   | Tipo       | Corpo                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `id`      | `Long` | O ID do tópico que deseja atualizar |
+    | `Mensagem`      | `String` | Mensagem desejada a atualizar.|
+
+
+
+    ```http
+    GET /topicos/buscar-topico/${id}
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `id`      | `Long` | **Obrigatório**. O ID do item que você quer |
+
+
+
+
+
+
+
+
+
 ## Documentação <img width="26px"  src="https://img.icons8.com/?size=100&id=LxtV1REKsCa5&format=png&color=000000">
 
 [Documentação](https://link-da-documentação)
