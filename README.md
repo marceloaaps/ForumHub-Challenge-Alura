@@ -1,6 +1,4 @@
-# Alura Challenge - Forumhub
-
-# WORK IN PROGRESS
+# <img width="28px" margin="0px"  src="https://img.icons8.com/?size=100&id=103407&format=png&color=000000"> Alura Challenge - Forumhub <img width="28px" margin="0px"  src="https://img.icons8.com/?size=100&id=103407&format=png&color=000000">
 
 Feito totalmente por mim, esse projeto vem do desafio final 
 da formação Oracle Next Education, apresentado pela Alura em Java 
@@ -9,7 +7,7 @@ contendo funções como: Perfis de usuários, Tópicos, Respostas desses tópico
 diversos outros endpoints.
 
 
-## Ferramentas Utilizadas
+## Ferramentas Utilizadas <img width="25px" src="https://img.icons8.com/?size=100&id=600MeI55fCza&format=png&color=000000">
 - Java 17
 - Maven 
 - Hibernate
@@ -26,7 +24,7 @@ diversos outros endpoints.
 - Insomnia
 
 
-## Conceitos Utilizados
+## Conceitos Utilizados <img width="25px" src="https://img.icons8.com/?size=100&id=81348&format=png&color=000000">
 - Clean Architecture 
 - Clean Code
 - Single Responsibility Principle (SRP)
@@ -35,7 +33,7 @@ diversos outros endpoints.
 - Soft Delete
 - REST API
 
-## Funcionalidades
+## Funcionalidades <img width="25px" src="https://img.icons8.com/?size=100&id=SqtU1cqaoDxt&format=png&color=000000">
 
 - Criação de Usuários
 - Criação de Tópicos
@@ -44,7 +42,7 @@ diversos outros endpoints.
 - Deleção e alteração de tópicos e respostas.
 - Deleção de Usuários
 
-## Screenshots
+## Screenshots <img width="26px"  src="https://img.icons8.com/?size=100&id=nevTPff0KmQx&format=png&color=000000">
 
 - Springdoc com Swagger
 ![App Screenshot](https://i.imgur.com/kgGr9F9.png)
@@ -60,7 +58,7 @@ diversos outros endpoints.
 
 
 
-## Variáveis de Ambiente
+## Variáveis de Ambiente <img width="26px"  src="https://img.icons8.com/?size=100&id=55167&format=png&color=000000">
 
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu sistema.
 
@@ -76,11 +74,11 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 
 
-## Aprendizados
+## Aprendizados <img width="26px"  src="https://img.icons8.com/?size=100&id=103808&format=png&color=000000">
 
 O que você aprendeu construindo esse projeto? Quais desafios você enfrentou e como você superou-os?
 
-## Documentação da API
+## Documentação da API <img width="26px"  src="https://img.icons8.com/?size=100&id=AWNz4SeVAd8y&format=png&color=000000">
 
 #### Retorna todos os itens
 
@@ -105,7 +103,7 @@ O que você aprendeu construindo esse projeto? Quais desafios você enfrentou e 
 #### add(num1, num2)
 
 Recebe dois números e retorna a sua soma.
-## Documentação
+## Documentação <img width="26px"  src="https://img.icons8.com/?size=100&id=LxtV1REKsCa5&format=png&color=000000">
 
 [Documentação](https://link-da-documentação)
 
