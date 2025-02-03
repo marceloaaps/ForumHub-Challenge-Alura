@@ -82,7 +82,7 @@ Nesse projeto foi agregado a mim muito conhecimento em relação ao framework Sp
 
 Documentação de cada endpoint, cada desejado, está mais detalhado na documentação Swagger na aplicação.
 
-- Topico
+- ## Topico
 
     #### Retorna todos os tópicos
 
@@ -105,36 +105,112 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
     | `id`      | `Long` | **Obrigatório**. O ID do item que você quer |
 
 
+    #### Atualiza o tópico
 
-    #### Atualiza o tópico	
     ```http
-    GET /topicos/buscar-topico/${id}
+    PUT /topicos/atualizar/${id}
     ```
-    
-
     | Parâmetro   | Tipo       | Corpo                                   |
     | :---------- | :--------- | :------------------------------------------ |
     | `id`      | `Long` | O ID do tópico que deseja atualizar |
-    | `Mensagem`      | `String` | Mensagem desejada a atualizar.|
+    | `mensagem`      | `String` | Mensagem desejada a atualizar.|
 
 
-
+     #### Deleta um tópico
     ```http
-    GET /topicos/buscar-topico/${id}
+    DELETE /topicos/deletar/${id}
+
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
-    | `id`      | `Long` | **Obrigatório**. O ID do item que você quer |
+    | `id`      | `Long` | **Obrigatório**. O ID do tópico que deseja deletar. |
+
+
+    #### Criar um tópico
+    ```http
+    POST /topicos/buscar-topico/${id}
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `titulo`      | `String` | **Obrigatório**. Titulo do post, não pode ser vazio. |
+    | `mensagem`      | `String` | **Obrigatório**. Mensagem do post, não pode ser vazio. |
+    | `status`      | `Boolean` | **Obrigatório**. Status atual do post, não pode ser vazio. |
+    | `autor`      | `long` | **Obrigatório**. ID do autor do tópico, não pode ser vazio. |
+    | `curso`      | `String` | **Obrigatório**. Curso para onde o post é destinado, não pode ser vazio. |
 
 
 
 
 
 
+- ## Usuário 
+
+    #### Criar um Usuário
+    ```http
+    POST /auth/registrar
+
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `nome`      | `String` | **Obrigatório**. Nome do usuário, não pode ser repetido. |
+    | `email`      | `String` | **Obrigatório**. Email do usuário, deve seguir os padrões. |
+    | `senha`      | `STRING` | **Obrigatório**. Senha do usuário. |
+    | `role`      | `long` | **Obrigatório**. Role do usuário, 1 para Admin, 2 para Member e 3 para Guest. |
 
 
+   #### Efetua login
+    ```http
+    POST auth/logar/
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `email`      | `String` | **Obrigatório**. Email do usuário, deve estar correto senão 401 Unauthorized. |
+    | `senha`      | `String` | **Obrigatório**. Senha do usuário, deve estar correto senão 401 Unauthorized. |
 
-## Documentação <img width="26px"  src="https://img.icons8.com/?size=100&id=LxtV1REKsCa5&format=png&color=000000">
+  #### Retorna Usuário com o nome desejado
+    ```http
+    GET usuarios/busca-nomes/${nome}
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `nome`      | `String` | **Obrigatório**. Nome do usuário que deseja buscar. |
 
-[Documentação](https://link-da-documentação)
 
+- ## Resposta 
+
+  #### Retorna lista de  respostas por id do tópico.
+    ```http
+    GET respostas/procura-respostas/${id}
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `id`      | `Long` | **Obrigatório**. ID do tópico que deseja buscar. |
+
+  #### Adiciona resposta ao tópico
+    ```http
+    POST respostas/adicionar-respostas
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `mensagem`      | `String` | **Obrigatório**. Mensagem que deseja adicionar ao tópico. Se repetida retorna exception. |
+    | `autor`      | `Long` | **Obrigatório**. Id do Usuário criador do tópico.|
+    | `topico`      | `Long` | **Obrigatório**. Id do Tópico que deseja adicionar a resposta.|
+
+  #### Adiciona resposta ao tópico
+    ```http
+    POST respostas/adicionar-respostas
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `mensagem`      | `String` | **Obrigatório**. Mensagem que deseja adicionar ao tópico. Se repetida retorna exception. |
+    | `autor`      | `Long` | **Obrigatório**. Id do Usuário criador do tópico.|
+    | `topico`      | `Long` | **Obrigatório**. Id do Tópico que deseja adicionar a resposta.|
+
+  #### Atualiza a resposta baseada no ID.
+    ```http
+    GET respostas/atualizar/${id}
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `id`      | `Long` | **Obrigatório**. ID da resposta que deseja atualizar. |
+    | `mensagem`      | `String` | **Obrigatório**. Mensagem que deseja adicionar na troca. |
