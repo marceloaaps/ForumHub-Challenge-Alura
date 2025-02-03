@@ -1,5 +1,6 @@
 package com.marcelospring.forumhub.presentation.controllers;
 
+import com.marcelospring.forumhub.core.use_cases.resposta.AtualizarRespostaByIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.resposta.CriarRespostaUseCase;
 import com.marcelospring.forumhub.core.use_cases.resposta.RetornaRespostaByTopicoIdUseCase;
 import com.marcelospring.forumhub.core.use_cases.resposta.SoftDeleteRespostaByIdUseCase;
@@ -26,11 +27,13 @@ public class RespostaController {
     private final CriarRespostaUseCase criarRespostaUseCase;
     private final RetornaRespostaByTopicoIdUseCase retornarRespostaByTopicoIdUseCase;
     private final SoftDeleteRespostaByIdUseCase softDeleteRespostaByIdUseCase;
+    private final AtualizarRespostaByIdUseCase atualizarRespostaByIdUseCase;
 
-    public RespostaController(CriarRespostaUseCase criarRespostaUseCase, RetornaRespostaByTopicoIdUseCase retornarRespostaByTopicoIdUseCase, SoftDeleteRespostaByIdUseCase softDeleteRespostaByIdUseCase) {
+    public RespostaController(CriarRespostaUseCase criarRespostaUseCase, RetornaRespostaByTopicoIdUseCase retornarRespostaByTopicoIdUseCase, SoftDeleteRespostaByIdUseCase softDeleteRespostaByIdUseCase, AtualizarRespostaByIdUseCase atualizarRespostaByIdUseCase) {
         this.criarRespostaUseCase = criarRespostaUseCase;
         this.retornarRespostaByTopicoIdUseCase = retornarRespostaByTopicoIdUseCase;
         this.softDeleteRespostaByIdUseCase = softDeleteRespostaByIdUseCase;
+        this.atualizarRespostaByIdUseCase = atualizarRespostaByIdUseCase;
     }
 
 
@@ -93,6 +96,7 @@ public class RespostaController {
     @PutMapping(value = "/atualizar/{id}")
     public ResponseEntity<Void> updateRespostaDto (@PathVariable Long id, @RequestBody @Valid UpdateRespostaDto updateRespostaDto) {
 
+        atualizarRespostaByIdUseCase.atualizarResposta(id, updateRespostaDto);
         validaRequest(id);
 
         return ResponseEntity.noContent().build();
@@ -103,6 +107,4 @@ public class RespostaController {
             ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
-
-
 }

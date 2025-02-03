@@ -16,13 +16,13 @@ public class AtualizarRespostaByIdUseCase {
 
     public void atualizarResposta (Long id, UpdateRespostaDto updateRespostaDto) {
 
-        if (updateRespostaDto.message().isEmpty()){
+        if (updateRespostaDto.mensagem().isEmpty()){
             throw new ResourceNotFoundException("Mensagem inexistente.");
         }
 
         var resposta = respostaRepository.getRespostaById(id);
 
-        resposta.setMensagem(updateRespostaDto.message());
+        resposta.setMensagem(updateRespostaDto.mensagem());
 
         respostaRepository.save(resposta);
     }

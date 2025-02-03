@@ -32,7 +32,7 @@ public class UsuarioController {
             @ApiResponse (responseCode = "401", description = "Caso não autenticado pelo Bearer, retorna 401 Unauthorized."),
             @ApiResponse(responseCode = "404",  description = "Error: Retorna código 404 Resource Not Found.")
     })
-    @GetMapping(name = "/busca-nomes/{nome}")
+    @GetMapping("/busca-nomes/{nome}")
     public ResponseEntity<UsuarioDto> getUsuarioByName(String nome) {
         var usuario = retornarUsuarioByNomeUseCase.retornaUsuarioByNome(nome);
         return ResponseEntity.ok(usuario);
@@ -44,7 +44,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "404",  description = "Error: Retorna código 404 Resource Not Found."),
             @ApiResponse (responseCode = "401", description = "Falha de auth: Caso não autenticado pelo Bearer, retorna 401 Unauthorized.")}
     )
-    @DeleteMapping(name = "/deletar/{id}")
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<Void> deletarUsuario(@PathVariable("id") Long id) {
         softDeleteUsuarioByIdUseCase.softDeleteUsuarioByIdUseCase(id);
         return ResponseEntity.noContent().build();
