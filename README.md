@@ -160,7 +160,7 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
 
    #### Efetua login
     ```http
-    POST auth/logar/
+    POST /auth/logar/
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
@@ -169,7 +169,7 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
 
   #### Retorna Usuário com o nome desejado
     ```http
-    GET usuarios/busca-nomes/${nome}
+    GET /usuarios/busca-nomes/${nome}
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
@@ -180,7 +180,7 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
 
   #### Retorna lista de  respostas por id do tópico.
     ```http
-    GET respostas/procura-respostas/${id}
+    GET /respostas/procura-respostas/${id}
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
@@ -188,7 +188,7 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
 
   #### Adiciona resposta ao tópico
     ```http
-    POST respostas/adicionar-respostas
+    POST /respostas/adicionar-respostas
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
@@ -198,7 +198,7 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
 
   #### Adiciona resposta ao tópico
     ```http
-    POST respostas/adicionar-respostas
+    POST /respostas/adicionar-respostas
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
@@ -208,7 +208,7 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
 
   #### Atualiza a resposta baseada no ID.
     ```http
-    GET respostas/atualizar/${id}
+    GET /respostas/atualizar/${id}
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
