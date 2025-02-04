@@ -196,21 +196,20 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
     | `autor`      | `Long` | **Obrigatório**. Id do Usuário criador do tópico.|
     | `topico`      | `Long` | **Obrigatório**. Id do Tópico que deseja adicionar a resposta.|
 
-  #### Adiciona resposta ao tópico
-    ```http
-    POST /respostas/adicionar-respostas
-    ```
-    | Parâmetro   | Tipo       | Descrição                                   |
-    | :---------- | :--------- | :------------------------------------------ |
-    | `mensagem`      | `String` | **Obrigatório**. Mensagem que deseja adicionar ao tópico. Se repetida retorna exception. |
-    | `autor`      | `Long` | **Obrigatório**. Id do Usuário criador do tópico.|
-    | `topico`      | `Long` | **Obrigatório**. Id do Tópico que deseja adicionar a resposta.|
-
   #### Atualiza a resposta baseada no ID.
     ```http
-    GET /respostas/atualizar/${id}
+    POST /respostas/atualizar/${id}
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
     | `id`      | `Long` | **Obrigatório**. ID da resposta que deseja atualizar. |
     | `mensagem`      | `String` | **Obrigatório**. Mensagem que deseja adicionar na troca. |
+  
+    #### Deleta uma resposta do tópico.
+    ```http
+    GET /respostas/deletar/${id}
+    ```
+    | Parâmetro   | Tipo       | Descrição                                   |
+    | :---------- | :--------- | :------------------------------------------ |
+    | `id`      | `Long` | **Obrigatório**. ID da resposta que deseja deletar. |
+
