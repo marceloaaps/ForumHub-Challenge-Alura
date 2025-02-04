@@ -207,7 +207,7 @@ Documentação de cada endpoint, cada desejado, está mais detalhado na document
   
     #### Deleta uma resposta do tópico.
     ```http
-    GET /respostas/deletar/${id}
+    DELETE /respostas/deletar/${id}
     ```
     | Parâmetro   | Tipo       | Descrição                                   |
     | :---------- | :--------- | :------------------------------------------ |
