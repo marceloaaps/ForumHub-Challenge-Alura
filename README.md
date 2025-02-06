@@ -17,6 +17,7 @@ diversos outros endpoints.
 - Spring Test
 - JWT
 - Lombok
+- Bean Validation
 - MySQL
 - Flyway Migrations
 - MapStruct
